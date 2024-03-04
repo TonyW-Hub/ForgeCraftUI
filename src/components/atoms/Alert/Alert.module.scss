@@ -1,0 +1,44 @@
+.Alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    min-width: clamp(20px, 20px, 20px);
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}
+
+.error {
+  color: #ff0000;
+  svg {
+    stroke: #ff0000;
+  }
+}
+
+.errorBg {
+  width: auto;
+  background-color: lighten($color: #ff0000, $amount: 45%);
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.warning {
+  color: #ed6c02;
+  svg {
+    stroke: #ed6c02;
+  }
+}
+
+.warningBg {
+  width: 100%;
+  background-color: lighten($color: #ed6c02, $amount: 45%);
+  padding: 5px 10px;
+  border-radius: 3px;
+}

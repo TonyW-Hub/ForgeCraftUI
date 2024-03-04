@@ -1,0 +1,97 @@
+@use '../../../shared/styles/mixin' as *;
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: var(--z-index-backdrop);
+    min-height: 100vh;
+
+    &::-webkit-scrollbar-track {
+        border-radius: 20px;
+        background-color: #0000;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background-color: #0000;
+    }
+}
+
+.backdropActive {
+    background-color: var(--bg-soft-dark-opacity);
+}
+
+.Modal {
+    position: relative;
+    background-color: var(--default-light-color);
+    border-radius: var(--default-global-radius);
+    box-shadow: var(--default-box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    top: 80px;
+    margin-bottom: 8rem;
+    z-index: var(--z-index-modal);
+    margin-inline: auto;
+    overflow: hidden;
+    cursor: initial;
+    width: calc(100% - 2rem);
+    min-width: 200px;
+    max-width: 600px;
+    @include expandAnimation();
+
+    .cancelBtnCross {
+        background-color: transparent;
+        border: none;
+        border-radius: var(--default-global-radius);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.1s ease-in;
+        width: clamp(25px, 25px, 25px);
+        height: clamp(25px, 25px, 25px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+
+        &:hover {
+            background-color: var(--bg-soft-dark-opacity);
+        }
+    }
+
+    &Header {
+        width: 100%;
+    }
+
+    &Body {
+        width: 100%;
+        font-size: var(--font-size-md);
+
+        p {
+            margin: 0;
+        }
+    }
+
+    @include responsive(sm) {
+        top: 10px;
+        &Body {
+            font-size: var(--font-size-sm);
+        }
+    }
+}
+
+.decreaseAnimation {
+    @include decreaseAnimation();
+}
+
+.fadeBackdrop {
+    @include fadeAnimation();
+}

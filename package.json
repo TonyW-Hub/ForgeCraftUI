@@ -55,6 +55,5 @@
       ],
       "react/jsx-no-target-blank": "off"
     }
-  },
-  "prettier": "prettier-config-nick"
+  }
 }

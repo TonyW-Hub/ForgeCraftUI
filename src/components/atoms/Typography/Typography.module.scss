@@ -1,0 +1,27 @@
+.Typography {
+}
+
+.Title {
+    word-break: break-word;
+    text-align: start;
+    margin: 0;
+
+    &:is(h1) {
+        font-size: var(--font-size-heading-1);
+    }
+    &:is(h2) {
+        font-size: var(--font-size-heading-2);
+    }
+    &:is(h3) {
+        font-size: var(--font-size-heading-3);
+    }
+    &:is(h4) {
+        font-size: var(--font-size-heading-4);
+    }
+    &:is(h5) {
+        font-size: var(--font-size-heading-5);
+    }
+    &:is(h6) {
+        font-size: var(--font-size-heading-6);
+    }
+}

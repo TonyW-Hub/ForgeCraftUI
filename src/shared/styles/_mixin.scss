@@ -1,0 +1,72 @@
+@use './variables' as *;
+
+@mixin container($size: 300px, $query: max-width) {
+    @media ($query: $size) {
+        @content;
+    }
+}
+
+@mixin responsive($device, $query: max-width) {
+    @if $device == sm {
+        @media screen and ($query: $breakpoint-sm) {
+            @content;
+        }
+    } @else if $device == md {
+        @media screen and ($query: $breakpoint-md) {
+            @content;
+        }
+    } @else if $device == lg {
+        @media screen and ($query: $breakpoint-lg) {
+            @content;
+        }
+    } @else if $device == xl {
+        @media screen and ($query: $breakpoint-xl) {
+            @content;
+        }
+    } @else if $device == xxl {
+        @media screen and ($query: $breakpoint-2xl) {
+            @content;
+        }
+    }
+}
+
+@mixin expandAnimation {
+    animation: expand 0.2s both;
+
+    @keyframes expand {
+        0% {
+            transform: scale(0.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
+@mixin decreaseAnimation {
+    animation: descrease 0.2s both;
+
+    @keyframes descrease {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+}
+
+@mixin fadeAnimation {
+    animation: fade 0.2s both;
+
+    @keyframes fade {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+}
