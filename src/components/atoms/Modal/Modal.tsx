@@ -5,6 +5,7 @@ import { Typography } from '../Typography/Typography';
 import { CloseSVG } from '../SVGs/CloseSVG/CloseSVG';
 import { Flex } from '../Flex/Flex';
 import { FlexJustify } from '../../../types';
+import { Button } from '../Button/Button';
 
 type ModalClassNames = {
     backdrop?: string;
@@ -44,7 +45,7 @@ export const Modal = ({
     onContinue,
     backdrop = {
         show: true,
-        closable: true,
+        closable: false,
     },
     title,
     header,
@@ -117,8 +118,12 @@ export const Modal = ({
                         style={{ width: '100%' }}
                         className={classNames.footer}
                     >
-                        <button onClick={handleCloseAnimation}>{textsProps?.cancelText}</button>
-                        <button onClick={onContinue}>{textsProps?.ContinueText}</button>
+                        <Button onClick={handleCloseAnimation} size="small" variant="outline">
+                            {textsProps?.cancelText}
+                        </Button>
+                        <Button onClick={onContinue} size="small" variant="primary">
+                            {textsProps?.ContinueText}
+                        </Button>
                     </Flex>
                 )}
             </Flex>

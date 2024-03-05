@@ -1,0 +1,167 @@
+.Button {
+    font-size: var(--font-size-sm);
+    line-height: 1.25rem;
+    border-radius: var(--default-global-radius);
+    border: none;
+    background-color: var(--default-dark-color);
+    color: var(--default-light-color);
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    gap: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border: 1px solid transparent;
+}
+
+.buttonLarge {
+    padding: 8px 22px;
+}
+.buttonMiddle {
+    padding: 6px 15px;
+}
+.buttonSmall {
+    padding: 4px 12px;
+}
+
+.buttonDefault {
+    background-color: var(--default-dark-color);
+    color: var(--default-light-color);
+}
+.buttonPrimary {
+    background-color: var(--vui-color-primary);
+
+    &:hover {
+        background-color: var(--vui-color-primary-3);
+    }
+}
+.buttonSecondary {
+    background-color: var(--vui-color-secondary);
+
+    &:hover {
+        background-color: var(--vui-color-secondary-3);
+    }
+}
+.buttonTertiary {
+    background-color: var(--vui-color-tertiary);
+    color: var(--default-dark-color);
+
+    &:hover {
+        background-color: var(--vui-color-tertiary-3);
+    }
+}
+.buttonQuaternary {
+    background-color: var(--vui-color-quaternary);
+    color: var(--default-dark-color);
+
+    &:hover {
+        background-color: var(--vui-color-quaternary-3);
+    }
+}
+.buttonDashed {
+    background-color: transparent;
+    color: var(--default-dark-color);
+    border-color: var(--default-dark-color);
+    border-style: dashed;
+
+    &:hover {
+        border-color: var(--vui-color-primary);
+        color: var(--vui-color-primary);
+    }
+}
+.buttonOutline {
+    background-color: transparent;
+    color: var(--default-dark-color);
+    border-color: var(--color-disabled);
+
+    &:hover {
+        border-color: var(--vui-color-primary);
+        color: var(--vui-color-primary);
+    }
+}
+.buttonLink {
+    background-color: transparent;
+    color: var(--vui-color-primary);
+    box-shadow: none;
+
+    &:hover {
+        color: var(--vui-color-primary-3);
+    }
+}
+.buttonText {
+    background-color: transparent;
+    color: var(--default-dark-color);
+    box-shadow: none;
+
+    &:hover {
+        background-color: var(--bg-color-disabled);
+    }
+}
+
+.buttonDangerDefault {
+    background-color: var(--vui-color-danger);
+    color: var(--default-light-color);
+
+    &:hover {
+        background-color: var(--vui-color-danger-2);
+    }
+}
+.buttonDangerLink {
+    background-color: transparent;
+    color: var(--vui-color-danger);
+    box-shadow: none;
+
+    &:hover {
+        color: var(--vui-color-danger-2);
+    }
+}
+.buttonDangerText {
+    background-color: transparent;
+    color: var(--default-dark-color);
+    box-shadow: none;
+
+    &:hover {
+        background-color: var(--vui-color-danger-1);
+    }
+}
+.buttonDangerOutline {
+    background-color: transparent;
+    color: var(--vui-color-danger);
+    border-color: var(--vui-color-danger);
+
+    &:hover {
+        color: var(--vui-color-danger-2);
+        border-color: var(--vui-color-danger-2);
+    }
+}
+
+.buttonCircle {
+    border-radius: var(--vui-circle-radius);
+}
+.buttonRound {
+    border-radius: var(--vui-round-radius);
+}
+
+.loading {
+    opacity: 0.65;
+    cursor: default;
+    pointer-events: none;
+
+    &:hover {
+        pointer-events: none;
+    }
+}
+.notAllowed {
+    background-color: var(--bg-color-disabled);
+    color: var(--color-disabled);
+    cursor: not-allowed;
+    border: 1px solid var(--border-color-disabled);
+
+    &:hover {
+        background-color: var(--bg-color-disabled);
+        color: var(--color-disabled);
+        cursor: not-allowed;
+        border: 1px solid var(--border-color-disabled);
+    }
+}

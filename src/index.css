@@ -12,27 +12,70 @@
 
     --default-light-color: #fbfbfbfb;
     --default-dark-color: #171717;
-    --color-danger: #ff0000;
+
+    --vui-color-primary: #21bbee;
+    --vui-color-primary-1: #e9f8fd;
+    --vui-color-primary-2: #8edcf6;
+    --vui-color-primary-3: #58ccf2;
+    --vui-color-primary-4: #11b0e4;
+    --vui-color-primary-5: #109dcc;
+    --vui-color-primary-6: #0e8bb5;
+    --vui-color-secondary: #17243f;
+    --vui-color-secondary-1: #2b4477;
+    --vui-color-secondary-2: #253964;
+    --vui-color-secondary-3: #1e2f52;
+    --vui-color-secondary-4: #10192c;
+    --vui-color-secondary-5: #090f1a;
+    --vui-color-secondary-6: #030407;
+    --vui-color-tertiary: #08ffad;
+    --vui-color-tertiary-1: #b9ffe8;
+    --vui-color-tertiary-2: #7effd4;
+    --vui-color-tertiary-3: #56ffc7;
+    --vui-color-tertiary-4: #00ee9f;
+    --vui-color-tertiary-5: #00d48e;
+    --vui-color-tertiary-6: #00bb7d;
+    --vui-color-quaternary: #dbffaa;
+    --vui-color-quaternary-1: #fbfff7;
+    --vui-color-quaternary-2: #f1ffdd;
+    --vui-color-quaternary-3: #e6ffc4;
+    --vui-color-quaternary-4: #d0ff91;
+    --vui-color-quaternary-5: #c5ff77;
+    --vui-color-quaternary-6: #bbff5e;
+    --vui-color-danger: #ff0000;
+    --vui-color-danger-1: #fff2f0;
+    --vui-color-danger-2: #ff6262;
+    --vui-color-danger-3: #ff3b3b;
+    --vui-color-danger-4: #e60000;
+    --vui-color-danger-5: #cc0000;
+    --vui-color-danger-6: #b30000;
+
+    --color-disabled: rgba(0, 0, 0, 0.25);
+
+    --border-color-disabled: #d9d9d9;
 
     --bg-dark-opacity: rgba(0, 0, 0, 0.8);
     --bg-soft-dark-opacity: rgba(0, 0, 0, 0.4);
+    --bg-color-disabled: rgba(0, 0, 0, 0.04);
 
     --default-box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
 
     --default-global-radius: 6px;
+    --vui-circle-radius: 50%;
+    --vui-round-radius: 40px;
 
     --z-index-backdrop: 1000;
     --z-index-modal: 1050;
 
-    --font-size-sm: 14px;
-    --font-size-md: 16px;
-    --font-size-lg: 18px;
-    --font-size-xl: 24px;
-    --font-size-heading-1: 30px;
-    --font-size-heading-2: 24px;
-    --font-size-heading-3: 18px;
-    --font-size-heading-4: 16px;
-    --font-size-heading-5: 14px;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-heading-1: 1.875rem;
+    --font-size-heading-2: 1.5rem;
+    --font-size-heading-3: 1.125rem;
+    --font-size-heading-4: 1rem;
+    --font-size-heading-5: 0.875rem;
 
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
