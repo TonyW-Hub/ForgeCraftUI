@@ -7,7 +7,6 @@
         transform: translateX(-50%);
         visibility: visible;
         font-size: var(--font-size-xs);
-        background-color: rgba(0, 0, 0, 0.85);
         color: var(--default-light-color);
         border-radius: var(--default-global-radius);
         z-index: var(--vui-z-index-tooltip);
@@ -20,22 +19,29 @@
         text-align: start;
     }
 
-    // .top {
-    //     inset: initial;
-    //     left: 50%;
-    //     bottom: 135%;
-    // }
+    .default {
+        background-color: rgba(0, 0, 0, 0.85);
+    }
 
-    // .left {
-    //     inset: initial;
-    //     left: -130px;
-    //     top: -10px;
-    // }
+    .outline {
+        border: 1px solid rgba(0, 0, 0, 0.85);
+        background-color: var(--default-light-color);
+        color: var(--default-dark-color);
+    }
 
-    // .right {
-    //     inset: initial;
-    //     right: -130px;
-    //     top: -10px;
-    //     transform: translateX(50%);
-    // }
+    .primary {
+        background-color: var(--vui-color-primary);
+    }
+
+    .secondary {
+        background-color: var(--vui-color-secondary);
+    }
+
+    .tertiary {
+        background-color: var(--vui-color-tertiary);
+    }
+
+    .quaternary {
+        background-color: var(--vui-color-quaternary);
+    }
 }

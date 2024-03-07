@@ -1,11 +1,13 @@
 import React, { PropsWithChildren, useRef, useState, useEffect } from 'react';
 import Styles from './Tooltip.module.scss';
+import { TooltipVariant } from '../../../types';
 
 type TooltipProps = {
     title?: string;
     style?: React.CSSProperties;
     position?: TooltipPosition;
     classNames?: TooltipClassNames;
+    variant?: TooltipVariant;
 };
 
 type TooltipClassNames = {
@@ -29,6 +31,7 @@ export const Tooltip = ({
     title = '',
     position = 'top',
     classNames = { container: '', trigger: '', tooltip: '' },
+    variant = 'default',
     children,
 }: PropsWithChildren<TooltipProps>) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
@@ -169,7 +172,7 @@ export const Tooltip = ({
             {visible && (
                 <div
                     ref={tooltipRef}
-                    className={`${Styles.TooltipTitle} ${Styles[tooltipPosition]} ${classNames.tooltip}`}
+                    className={`${Styles.TooltipTitle} ${Styles[tooltipPosition]} ${Styles[variant]} ${classNames.tooltip}`}
                     onMouseEnter={() => handleHover(true)}
                     style={{
                         top: cssPosition?.top && `${cssPosition.top}px`,

@@ -18,6 +18,8 @@ export type ButtonVariant =
     | 'tertiary'
     | 'quaternary';
 
+export type TooltipVariant = 'default' | 'outline' | 'primary' | 'secondary' | 'tertiary' | 'quaternary';
+
 export type Size = 'small' | 'middle' | 'large';
 
 export type ButtonShape = 'default' | 'circle' | 'round';
