@@ -66,7 +66,9 @@
 
     --z-index-backdrop: 1000;
     --z-index-modal: 1050;
+    --vui-z-index-tooltip: 1060;
 
+    --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-md: 1rem;
     --font-size-lg: 1.125rem;

@@ -1,2 +1,41 @@
 .Tooltip {
+    position: relative;
+    display: inline-flex;
+
+    &Title {
+        position: absolute;
+        transform: translateX(-50%);
+        visibility: visible;
+        font-size: var(--font-size-xs);
+        background-color: rgba(0, 0, 0, 0.85);
+        color: var(--default-light-color);
+        border-radius: var(--default-global-radius);
+        z-index: var(--vui-z-index-tooltip);
+        width: max-content;
+        max-width: 250px;
+        min-width: 32px;
+        padding: 6px 8px;
+        text-decoration: none;
+        word-wrap: break-word;
+        text-align: start;
+    }
+
+    // .top {
+    //     inset: initial;
+    //     left: 50%;
+    //     bottom: 135%;
+    // }
+
+    // .left {
+    //     inset: initial;
+    //     left: -130px;
+    //     top: -10px;
+    // }
+
+    // .right {
+    //     inset: initial;
+    //     right: -130px;
+    //     top: -10px;
+    //     transform: translateX(50%);
+    // }
 }
