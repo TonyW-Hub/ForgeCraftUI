@@ -8,6 +8,7 @@ type TooltipProps = {
     position?: TooltipPosition;
     classNames?: TooltipClassNames;
     variant?: TooltipVariant;
+    trigger?: 'hover' | 'click' | 'focus';
 };
 
 type TooltipClassNames = {
@@ -32,14 +33,15 @@ export const Tooltip = ({
     position = 'top',
     classNames = { container: '', trigger: '', tooltip: '' },
     variant = 'default',
+    trigger = 'hover',
     children,
 }: PropsWithChildren<TooltipProps>) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
     const tooltipContainerRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState<boolean>(true);
+    const [visible, setVisible] = useState<boolean>(false);
     const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition>(position);
-    const [cssPosition, setCssPosition] = useState<CSSPosition>({ top: 100, left: 100 });
+    const [cssPosition, setCssPosition] = useState<CSSPosition>({ top: 0, left: 0 });
 
     const handleHover = (value: boolean) => {
         setVisible(value);
@@ -58,6 +60,8 @@ export const Tooltip = ({
                 const windowWidthWithoutScrollbar = windowWidth - scrollbarWidth;
                 const windowHeight = window.innerHeight;
                 let newPosition: TooltipPosition = tooltipPosition;
+
+                console.log(trigger);
 
                 switch (tooltipPosition) {
                     case 'bottom':
@@ -79,30 +83,30 @@ export const Tooltip = ({
 
                 switch (newPosition) {
                     case 'bottom':
-                        if (tooltip.right >= windowWidth) {
-                            const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
-                            setCssPosition({
-                                top: trigger.bottom - container.top + 3,
-                                left: trigger.left - container.left + trigger.width / 2 + resize,
-                            });
-                            break;
-                        }
-                        if (tooltip.left <= 0) {
-                            setCssPosition({
-                                top: trigger.bottom - container.top + 3,
-                                left:
-                                    trigger.left -
-                                    container.left +
-                                    trigger.width / 2 +
-                                    tooltipRef.current.offsetWidth / 2,
-                            });
-                            break;
-                        }
+                        // if (tooltip.right >= windowWidth && tooltip.left > 0) {
+                        //     const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
+                        //     setCssPosition({
+                        //         top: trigger.bottom - container.top + 3,
+                        //         left: trigger.left - container.left + trigger.width / 2 + resize,
+                        //     });
+                        //     return;
+                        // }
+                        // if (tooltip.left <= 0 && tooltip.right < windowWidth) {
+                        //     setCssPosition({
+                        //         top: trigger.bottom - container.top + 3,
+                        //         left:
+                        //             trigger.left -
+                        //             container.left +
+                        //             trigger.width / 2 +
+                        //             tooltipRef.current.offsetWidth / 2,
+                        //     });
+                        //     return;
+                        // }
                         setCssPosition({
                             top: trigger.bottom - container.top + 3,
                             left: trigger.left - container.left + trigger.width / 2,
                         });
-                        break;
+                        return;
                     case 'top':
                         if (tooltip.right >= windowWidth) {
                             const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
@@ -157,15 +161,17 @@ export const Tooltip = ({
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [tooltipPosition, tooltipContainerRef, tooltipRef, triggerRef]);
+    }, [tooltipPosition, trigger, tooltipContainerRef?.current, tooltipRef?.current, triggerRef?.current]);
 
     return (
         <div className={`${Styles.Tooltip} ${classNames.container}`} ref={tooltipContainerRef}>
             <div
                 ref={triggerRef}
                 className={`${Styles.TooltipTrigger} ${classNames.trigger}`}
-                onMouseEnter={() => handleHover(true)}
-                onMouseLeave={() => handleHover(false)}
+                onMouseEnter={() => trigger === 'hover' && handleHover(true)}
+                onMouseLeave={() => trigger === 'hover' && handleHover(false)}
+                onClick={() => trigger === 'click' && handleHover(!visible)}
+                onFocus={() => trigger === 'focus' && handleHover(!visible)}
             >
                 {children}
             </div>

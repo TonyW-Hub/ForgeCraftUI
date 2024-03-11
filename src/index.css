@@ -12,6 +12,7 @@
 
     --default-light-color: #fbfbfbfb;
     --default-dark-color: #171717;
+    --vui-color-dark-opacity: rgba(0, 0, 0, 0.85);
 
     --vui-color-primary: #21bbee;
     --vui-color-primary-1: #e9f8fd;
@@ -61,12 +62,19 @@
     --box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
 
     --default-global-radius: 6px;
+    --vui-radius-md: 8px;
     --vui-circle-radius: 50%;
     --vui-round-radius: 40px;
 
     --z-index-backdrop: 1000;
     --z-index-modal: 1050;
     --vui-z-index-tooltip: 1060;
+
+    --vui-spacing-xs: 4px;
+    --vui-spacing-sm: 8px;
+    --vui-spacing-md: 16px;
+    --vui-spacing-lg: 24px;
+    --vui-spacing-xl: 32px;
 
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;

@@ -5,6 +5,8 @@ import { Modal } from './components/atoms/Modal/Modal';
 import { Button } from './components/atoms/Button/Button';
 import { Tooltip } from './components/atoms/Tooltip/Tooltip';
 import { Flex } from './components/atoms/Flex/Flex';
+import { Card } from './components/atoms/Card/Card';
+import { Grid } from './components/atoms/Grid/Grid';
 
 function App() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -43,11 +45,16 @@ function App() {
                     <Tooltip
                         title="Tooltip very long text to check if the css was good or not to fix that"
                         position="bottom"
+                        trigger="click"
                     >
-                        <Button onClick={() => setModalOpen(true)} loading={loading} variant="default" danger>
+                        <Button loading={loading} variant="default" danger>
                             Modal
                         </Button>
+                        {/* <Button onClick={() => setModalOpen(true)} loading={loading} variant="default" danger>
+                            Modal
+                        </Button> */}
                     </Tooltip>
+
                     {/* <Tooltip title="Tooltip" position="right">
                         <Button onClick={() => setModalOpen(true)} loading={loading} variant="default" danger>
                             Modal
@@ -61,6 +68,57 @@ function App() {
                 </Tooltip> */}
             </div>
             <Button.Link link="https://ant.design/components/button">link</Button.Link>
+
+            <Grid autoFit={300} gap={'large'}>
+                <Card
+                    title="Title card very long name for testing text overflow ellipsis"
+                    description="Description card very long name for testing text overflow ellipsis"
+                    avatar={{ src: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3', alt: 'avatar' }}
+                    actions={
+                        <Flex gap={'small'}>
+                            <Button>Cancel</Button>
+                            <Button>Ok</Button>
+                        </Flex>
+                    }
+                >
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit!
+                        Odio quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur
+                        repudiandae architecto nesciunt.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit!
+                        Odio quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur
+                        repudiandae architecto nesciunt.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit!
+                        Odio quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur
+                        repudiandae architecto nesciunt.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit!
+                        Odio quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur
+                        repudiandae architecto nesciunt.
+                    </p>
+                </Card>
+                <Card
+                    title="Title card very long name for testing text overflow ellipsis"
+                    description="Description card very long name for testing text overflow ellipsis"
+                    avatar={{ src: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3', alt: 'avatar' }}
+                >
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit!
+                        Odio quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur
+                        repudiandae architecto nesciunt.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit!
+                        Odio quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur
+                        repudiandae architecto nesciunt.
+                    </p>
+                </Card>
+            </Grid>
 
             <Modal
                 visible={modalOpen}
