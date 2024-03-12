@@ -8,6 +8,7 @@ import { Flex } from './components/atoms/Flex/Flex';
 import { Card } from './components/atoms/Card/Card';
 import { Grid } from './components/atoms/Grid/Grid';
 import { ChevronDownSVG } from './components/atoms/SVGs/ChevronDownSVG/ChevronDownSVG';
+import { Accordion } from './components/atoms/Accordion/Accordion';
 
 function App() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -135,6 +136,13 @@ function App() {
                     architecto nesciunt.
                 </span>
             </Card.Collapse>
+
+            <Accordion
+                items={[
+                    { key: '1', title: 'Item one', children: <span>Item one children</span> },
+                    { key: '2', title: 'Item two', children: <span>Item two children</span> },
+                ]}
+            />
 
             <Modal
                 visible={modalOpen}
