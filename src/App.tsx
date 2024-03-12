@@ -7,6 +7,7 @@ import { Tooltip } from './components/atoms/Tooltip/Tooltip';
 import { Flex } from './components/atoms/Flex/Flex';
 import { Card } from './components/atoms/Card/Card';
 import { Grid } from './components/atoms/Grid/Grid';
+import { ChevronDownSVG } from './components/atoms/SVGs/ChevronDownSVG/ChevronDownSVG';
 
 function App() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -119,6 +120,21 @@ function App() {
                     </p>
                 </Card>
             </Grid>
+            <Card.Collapse
+                title="Card collapse"
+                actions={
+                    <Flex gap={'small'} justify="space-between">
+                        <Button>Cancel</Button>
+                        <Button>Ok</Button>
+                    </Flex>
+                }
+            >
+                <span>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente et enim perspiciatis velit! Odio
+                    quas quae totam impedit non, sed aperiam soluta, voluptatibus, illo quo ipsam tenetur repudiandae
+                    architecto nesciunt.
+                </span>
+            </Card.Collapse>
 
             <Modal
                 visible={modalOpen}
