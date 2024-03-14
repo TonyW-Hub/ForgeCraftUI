@@ -22,30 +22,30 @@
         word-wrap: break-word;
         text-align: start;
     }
+}
 
-    .default {
-        background-color: var(--vui-color-dark-opacity);
-    }
+.default {
+    background-color: var(--vui-color-dark-opacity);
+}
 
-    .outline {
-        border: 1px solid var(--vui-color-dark-opacity);
-        background-color: var(--default-light-color);
-        color: var(--default-dark-color);
-    }
+.outline {
+    border: 1px solid var(--vui-color-dark-opacity);
+    background-color: var(--default-light-color);
+    color: var(--default-dark-color);
+}
 
-    .primary {
-        background-color: var(--vui-color-primary);
-    }
+.primary {
+    background-color: var(--vui-color-primary);
+}
 
-    .secondary {
-        background-color: var(--vui-color-secondary);
-    }
+.secondary {
+    background-color: var(--vui-color-secondary);
+}
 
-    .tertiary {
-        background-color: var(--vui-color-tertiary);
-    }
+.tertiary {
+    background-color: var(--vui-color-tertiary);
+}
 
-    .quaternary {
-        background-color: var(--vui-color-quaternary);
-    }
+.quaternary {
+    background-color: var(--vui-color-quaternary);
 }

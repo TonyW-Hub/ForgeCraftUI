@@ -49,6 +49,13 @@
     --vui-color-danger-4: #e60000;
     --vui-color-danger-5: #cc0000;
     --vui-color-danger-6: #b30000;
+    --vui-color-success: #2ecc71;
+    --vui-color-success-1: #ebfaf2;
+    --vui-color-success-2: #bbf0d1;
+    --vui-color-success-3: #7be1a6;
+    --vui-color-success-4: #27ac5f;
+    --vui-color-success-5: #208c4e;
+    --vui-color-success-6: #186c3c;
 
     --color-disabled: rgba(0, 0, 0, 0.25);
 
@@ -60,6 +67,7 @@
 
     --default-box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
     --box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+    --vui-toast-box-shadow: 0 4px 12px #0000001a;
 
     --default-global-radius: 6px;
     --vui-radius-md: 8px;

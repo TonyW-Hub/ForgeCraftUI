@@ -1,0 +1,98 @@
+.Toast {
+    position: fixed;
+    width: 300px;
+    background-color: var(--default-light-color);
+    box-shadow: var(--vui-toast-box-shadow);
+    font-size: var(--font-size-sm);
+    padding: var(--vui-spacing-md);
+    border-radius: var(--vui-radius-md);
+    border: 1px solid var(--vui-color-light-1);
+    z-index: 9999;
+
+    .cancelBtnCross {
+        background-color: transparent;
+        border: none;
+        border-radius: var(--default-global-radius);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.1s ease-in;
+        width: clamp(25px, 25px, 25px);
+        height: clamp(25px, 25px, 25px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+
+        &:hover {
+            background-color: var(--bg-soft-dark-opacity);
+        }
+    }
+}
+
+.Success {
+    background-color: var(--vui-color-success-1);
+    color: var(--vui-color-success);
+    border-color: var(--vui-color-success-2);
+
+    svg {
+        stroke: var(--vui-color-success);
+    }
+}
+
+.ToastBottomRight {
+    bottom: 32px;
+    right: 32px;
+    animation: visibleBottom 0.25s ease-in-out both;
+}
+.ToastBottomCenter {
+    bottom: 32px;
+    right: 0;
+    left: 0;
+    margin-inline: auto;
+    animation: visibleBottom 0.25s ease-in-out both;
+}
+.ToastBottomLeft {
+    bottom: 32px;
+    left: 32px;
+    animation: visibleBottom 0.25s ease-in-out both;
+}
+.ToastTopRight {
+    top: 32px;
+    right: 32px;
+    animation: visibleTop 0.25s ease-in-out both;
+}
+.ToastTopCenter {
+    top: 32px;
+    right: 0;
+    left: 0;
+    margin-inline: auto;
+    animation: visibleTop 0.25s ease-in-out both;
+}
+.ToastTopLeft {
+    top: 32px;
+    left: 32px;
+    animation: visibleTop 0.25s ease-in-out forwards;
+}
+
+@keyframes visibleBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+@keyframes visibleTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}

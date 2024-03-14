@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useRef, useState, useEffect } from 'react';
 import Styles from './Tooltip.module.scss';
 import { TooltipVariant } from '../../../types';
+import { createPortal } from 'react-dom';
 
 type TooltipProps = {
     title?: string;
@@ -61,7 +62,7 @@ export const Tooltip = ({
                 const windowHeight = window.innerHeight;
                 let newPosition: TooltipPosition = tooltipPosition;
 
-                console.log(trigger);
+                // console.log(tooltip, trigger);
 
                 switch (tooltipPosition) {
                     case 'bottom':
@@ -81,72 +82,102 @@ export const Tooltip = ({
                         break;
                 }
 
-                switch (newPosition) {
-                    case 'bottom':
-                        // if (tooltip.right >= windowWidth && tooltip.left > 0) {
-                        //     const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
-                        //     setCssPosition({
-                        //         top: trigger.bottom - container.top + 3,
-                        //         left: trigger.left - container.left + trigger.width / 2 + resize,
-                        //     });
-                        //     return;
-                        // }
-                        // if (tooltip.left <= 0 && tooltip.right < windowWidth) {
-                        //     setCssPosition({
-                        //         top: trigger.bottom - container.top + 3,
-                        //         left:
-                        //             trigger.left -
-                        //             container.left +
-                        //             trigger.width / 2 +
-                        //             tooltipRef.current.offsetWidth / 2,
-                        //     });
-                        //     return;
-                        // }
-                        setCssPosition({
-                            top: trigger.bottom - container.top + 3,
-                            left: trigger.left - container.left + trigger.width / 2,
-                        });
-                        return;
-                    case 'top':
+                const setNewPosition = (position: TooltipPosition) => {
+                    if (position === 'bottom') {
+                        if (tooltip.left < 0 || trigger.left - tooltip.width / 2 < 0) {
+                            setCssPosition({
+                                top: trigger.y + (trigger.bottom - container.top + 3),
+                                left: tooltip.width / 2 + 3,
+                            });
+                            return;
+                        }
                         if (tooltip.right >= windowWidth) {
-                            const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
+                            const resize = windowWidthWithoutScrollbar - tooltip.right;
                             setCssPosition({
-                                top: trigger.bottom - container.top + 3,
-                                left: trigger.left - container.left + trigger.width / 2 + resize,
+                                top: trigger.y + (trigger.bottom - container.top + 3),
+                                left: trigger.x + resize + (trigger.left - container.left + trigger.width / 2),
                             });
-                            break;
+                            return;
                         }
-                        if (tooltip.left <= 0) {
+                        if (tooltip.left > 0 && tooltip.right < windowWidth) {
                             setCssPosition({
-                                top: trigger.bottom - container.top + 3,
-                                left:
-                                    trigger.left -
-                                    container.left +
-                                    trigger.width / 2 +
-                                    tooltipRef.current.offsetWidth / 2,
+                                top: trigger.y + (trigger.bottom - container.top + 3),
+                                left: trigger.x + (trigger.left - container.left + trigger.width / 2),
                             });
-                            break;
+                            return;
                         }
-                        setCssPosition({
-                            bottom: container.bottom - trigger.top + 3,
-                            left: trigger.left - container.left + trigger.width / 2,
-                        });
-                        break;
-                    case 'right':
-                        setCssPosition({
-                            top: trigger.top - container.top + trigger.height / 2 - tooltipRef.current.offsetHeight / 2,
-                            left: trigger.right - container.left + tooltipRef.current.offsetWidth / 2 + 3,
-                        });
-                        break;
-                    case 'left':
-                        setCssPosition({
-                            top: trigger.top - container.top + trigger.height / 2 - tooltipRef.current.offsetHeight / 2,
-                            right: trigger.right - container.left - tooltipRef.current.offsetWidth / 2 + 3,
-                        });
-                        break;
-                    default:
-                        break;
-                }
+                    }
+
+                    if (position === 'top') {
+                        if (tooltip.left < 0 || trigger.left - tooltip.width / 2 < 0) {
+                            setCssPosition({
+                                top: trigger.y - tooltip.height - 3,
+                                left: tooltip.width / 2 + 3,
+                            });
+                            return;
+                        }
+                        if (tooltip.right >= windowWidth) {
+                            const resize = windowWidthWithoutScrollbar - tooltip.right;
+                            setCssPosition({
+                                top: trigger.y - tooltip.height - 3,
+                                left: trigger.x + resize + (trigger.left - container.left + trigger.width / 2),
+                            });
+                            return;
+                        }
+                        if (tooltip.left > 0 && tooltip.right < windowWidth) {
+                            setCssPosition({
+                                top: trigger.y - tooltip.height - 3,
+                                left: trigger.x + (trigger.left - container.left + trigger.width / 2),
+                            });
+                            return;
+                        }
+                    }
+                };
+
+                // switch (newPosition) {
+
+                //     case 'top':
+                //         if (tooltip.right >= windowWidth) {
+                //             const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
+                //             setCssPosition({
+                //                 top: trigger.bottom - container.top + 3,
+                //                 left: trigger.left - container.left + trigger.width / 2 + resize,
+                //             });
+                //             break;
+                //         }
+                //         if (tooltip.left <= 0) {
+                //             setCssPosition({
+                //                 top: trigger.bottom - container.top + 3,
+                //                 left:
+                //                     trigger.left -
+                //                     container.left +
+                //                     trigger.width / 2 +
+                //                     tooltipRef.current.offsetWidth / 2,
+                //             });
+                //             break;
+                //         }
+                //         setCssPosition({
+                //             bottom: container.bottom - trigger.top + 3,
+                //             left: trigger.left - container.left + trigger.width / 2,
+                //         });
+                //         break;
+                //     case 'right':
+                //         setCssPosition({
+                //             top: trigger.top - container.top + trigger.height / 2 - tooltipRef.current.offsetHeight / 2,
+                //             left: trigger.right - container.left + tooltipRef.current.offsetWidth / 2 + 3,
+                //         });
+                //         break;
+                //     case 'left':
+                //         setCssPosition({
+                //             top: trigger.top - container.top + trigger.height / 2 - tooltipRef.current.offsetHeight / 2,
+                //             right: trigger.right - container.left - tooltipRef.current.offsetWidth / 2 + 3,
+                //         });
+                //         break;
+                //     default:
+                //         break;
+                // }
+
+                setNewPosition(newPosition);
 
                 if (newPosition !== tooltipPosition) {
                     setTooltipPosition(newPosition);
@@ -175,21 +206,23 @@ export const Tooltip = ({
             >
                 {children}
             </div>
-            {visible && (
-                <div
-                    ref={tooltipRef}
-                    className={`${Styles.TooltipTitle} ${Styles[tooltipPosition]} ${Styles[variant]} ${classNames.tooltip}`}
-                    onMouseEnter={() => handleHover(true)}
-                    style={{
-                        top: cssPosition?.top && `${cssPosition.top}px`,
-                        bottom: cssPosition?.bottom && `${cssPosition.bottom}px`,
-                        left: cssPosition?.left && `${cssPosition.left}px`,
-                        right: cssPosition?.right && `${cssPosition.right}px`,
-                    }}
-                >
-                    {title}
-                </div>
-            )}
+            {visible &&
+                createPortal(
+                    <div
+                        ref={tooltipRef}
+                        className={`${Styles.TooltipTitle} ${Styles[tooltipPosition]} ${Styles[variant]} ${classNames.tooltip}`}
+                        onMouseEnter={() => handleHover(true)}
+                        style={{
+                            top: cssPosition?.top && `${cssPosition.top}px`,
+                            bottom: cssPosition?.bottom && `${cssPosition.bottom}px`,
+                            left: cssPosition?.left && `${cssPosition.left}px`,
+                            right: cssPosition?.right && `${cssPosition.right}px`,
+                        }}
+                    >
+                        {title}
+                    </div>,
+                    document.body,
+                )}
         </div>
     );
 };
