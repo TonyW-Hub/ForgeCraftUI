@@ -197,6 +197,8 @@ function App() {
             <Button onClick={() => setShowTooltip(true)}>show Toast</Button>
             {showTooltip && <Toast position="topCenter">Show toast</Toast>}
 
+            <Input.Switch name="switch" onChange={(e) => console.log(e.target.checked)} />
+
             <Modal
                 visible={modalOpen}
                 onCancel={() => setModalOpen(false)}

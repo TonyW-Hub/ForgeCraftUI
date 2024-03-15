@@ -159,3 +159,30 @@ const InputDropZone = (props: InputProps) => {
 };
 
 Input.DropZone = InputDropZone;
+
+type InputSwitchProps = {
+    name: string;
+    classNames?: { main?: string; input?: string; label?: string };
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const InputSwitch = ({
+    name,
+    classNames = { main: '', input: '', label: '' },
+    onChange = () => {},
+}: InputSwitchProps) => {
+    return (
+        <div className={`${Styles.InputSwitch} ${classNames.main}`}>
+            <input
+                type="checkbox"
+                name={name}
+                id={name}
+                className={`${Styles.switchCheckbox} ${classNames.input}`}
+                onChange={onChange}
+            />
+            <label htmlFor={name} className={`${Styles.switchLabel} ${classNames.label}`}></label>
+        </div>
+    );
+};
+
+Input.Switch = InputSwitch;
