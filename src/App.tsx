@@ -40,6 +40,20 @@ function App() {
 
     return (
         <>
+            <Tooltip
+                title="Tooltip very long text to check if the css was good or not to fix that"
+                trigger="click"
+                custom={
+                    <Flex vertical>
+                        <h1>Title tooltip</h1> <p>Param</p>
+                    </Flex>
+                }
+                position="top"
+            >
+                <Button loading={loading} variant="default" danger>
+                    Modal
+                </Button>
+            </Tooltip>
             <form onSubmit={handleSubmit}>
                 <Input
                     name="Test"
@@ -58,23 +72,26 @@ function App() {
             </form>
 
             <div style={{ width: '100%' }}>
-                <Flex vertical gap={'small'} align="flex-start">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis expedita ipsam natus!
-                        Nesciunt iusto quidem, voluptatibus quibusdam velit mollitia, dolor dolore quo sed voluptatem
-                        repudiandae totam blanditiis aliquid aut vitae.
-                    </p>
+                <Flex vertical gap={'small'} align="center">
+                    <Tooltip position="top" title="Tooltip text" trigger="click">
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis expedita ipsam natus!
+                            Nesciunt iusto quidem, voluptatibus quibusdam velit mollitia, dolor dolore quo sed
+                            voluptatem repudiandae totam blanditiis aliquid aut vitae.
+                        </p>
+                    </Tooltip>
                     <Tooltip
                         title="Tooltip very long text to check if the css was good or not to fix that"
-                        position="top"
-                        trigger="click"
+                        position="right"
                     >
                         <Button loading={loading} variant="default" danger>
                             Modal
                         </Button>
-                        {/* <Button onClick={() => setModalOpen(true)} loading={loading} variant="default" danger>
+                    </Tooltip>
+                    <Tooltip title="Tooltip " position="top">
+                        <Button loading={loading} variant="default" danger>
                             Modal
-                        </Button> */}
+                        </Button>
                     </Tooltip>
 
                     {/* <Tooltip title="Tooltip" position="right">

@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 
 type TooltipProps = {
     title?: string;
+    custom?: React.ReactNode;
     style?: React.CSSProperties;
     position?: TooltipPosition;
     classNames?: TooltipClassNames;
@@ -35,6 +36,7 @@ export const Tooltip = ({
     classNames = { container: '', trigger: '', tooltip: '' },
     variant = 'default',
     trigger = 'hover',
+    custom,
     children,
 }: PropsWithChildren<TooltipProps>) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,7 @@ export const Tooltip = ({
     const [visible, setVisible] = useState<boolean>(false);
     const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition>(position);
     const [cssPosition, setCssPosition] = useState<CSSPosition>({ top: 0, left: 0 });
+    const [translate, setTranslate] = useState<string>('-50%');
 
     const handleHover = (value: boolean) => {
         setVisible(value);
@@ -56,26 +59,32 @@ export const Tooltip = ({
                 const tooltip = tooltipRef.current?.getBoundingClientRect();
 
                 const windowWidth = window.innerWidth;
-
                 const scrollbarWidth = windowWidth - document.documentElement.clientWidth;
                 const windowWidthWithoutScrollbar = windowWidth - scrollbarWidth;
                 const windowHeight = window.innerHeight;
-                let newPosition: TooltipPosition = tooltipPosition;
 
-                // console.log(tooltip, trigger);
+                let newPosition: TooltipPosition = tooltipPosition;
 
                 switch (tooltipPosition) {
                     case 'bottom':
                         if (tooltip.bottom > windowHeight) newPosition = 'top';
+                        else newPosition = 'bottom';
+
+                        if (position === 'left' && trigger.left - tooltip.width - 3 > 0) newPosition = 'left';
+                        if (position === 'right' && trigger.right + tooltip.width + 3 < windowWidthWithoutScrollbar)
+                            newPosition = 'right';
                         break;
                     case 'top':
                         if (tooltip.top < 0) newPosition = 'bottom';
+                        else newPosition = 'top';
                         break;
                     case 'right':
-                        if (tooltip.right > windowWidth) newPosition = 'bottom';
+                        if (trigger.right + tooltip.width + 3 > windowWidthWithoutScrollbar) newPosition = 'bottom';
+                        else newPosition = 'right';
                         break;
                     case 'left':
-                        if (tooltip.left < 0) newPosition = 'bottom';
+                        if (trigger.left - tooltip.width - 3 < 0) newPosition = 'bottom';
+                        else newPosition = 'left';
                         break;
 
                     default:
@@ -83,20 +92,45 @@ export const Tooltip = ({
                 }
 
                 const setNewPosition = (position: TooltipPosition) => {
+                    if (position === 'left') {
+                        setCssPosition({
+                            top: trigger.y,
+                            right: trigger.right + 3,
+                        });
+                        setTranslate('0%');
+                        return;
+                    }
+
+                    if (position === 'right') {
+                        setCssPosition({
+                            top: trigger.y,
+                            left: trigger.right + 3,
+                        });
+                        setTranslate('0%');
+                        return;
+                    }
+
                     if (position === 'bottom') {
-                        if (tooltip.left < 0 || trigger.left - tooltip.width / 2 < 0) {
+                        if (
+                            tooltip.left < 0 ||
+                            (trigger.width < tooltip.width && trigger.left - tooltip.width / 2 < 0)
+                        ) {
                             setCssPosition({
                                 top: trigger.y + (trigger.bottom - container.top + 3),
-                                left: tooltip.width / 2 + 3,
+                                left: 3,
                             });
+                            setTranslate('0%');
                             return;
                         }
-                        if (tooltip.right >= windowWidth) {
-                            const resize = windowWidthWithoutScrollbar - tooltip.right;
+                        if (
+                            tooltip.right >= windowWidth ||
+                            (trigger.width < tooltip.width && trigger.right + tooltip.width / 2 >= windowWidth)
+                        ) {
                             setCssPosition({
                                 top: trigger.y + (trigger.bottom - container.top + 3),
-                                left: trigger.x + resize + (trigger.left - container.left + trigger.width / 2),
+                                right: 3,
                             });
+                            setTranslate('0%');
                             return;
                         }
                         if (tooltip.left > 0 && tooltip.right < windowWidth) {
@@ -104,24 +138,32 @@ export const Tooltip = ({
                                 top: trigger.y + (trigger.bottom - container.top + 3),
                                 left: trigger.x + (trigger.left - container.left + trigger.width / 2),
                             });
+                            setTranslate('-50%');
                             return;
                         }
                     }
 
                     if (position === 'top') {
-                        if (tooltip.left < 0 || trigger.left - tooltip.width / 2 < 0) {
+                        if (
+                            tooltip.left < 0 ||
+                            (trigger.width < tooltip.width && trigger.left - tooltip.width / 2 < 0)
+                        ) {
                             setCssPosition({
                                 top: trigger.y - tooltip.height - 3,
-                                left: tooltip.width / 2 + 3,
+                                left: 3,
                             });
+                            setTranslate('0%');
                             return;
                         }
-                        if (tooltip.right >= windowWidth) {
-                            const resize = windowWidthWithoutScrollbar - tooltip.right;
+                        if (
+                            tooltip.right >= windowWidth ||
+                            (trigger.width < tooltip.width && trigger.right + tooltip.width / 2 >= windowWidth)
+                        ) {
                             setCssPosition({
                                 top: trigger.y - tooltip.height - 3,
-                                left: trigger.x + resize + (trigger.left - container.left + trigger.width / 2),
+                                right: 3,
                             });
+                            setTranslate('0%');
                             return;
                         }
                         if (tooltip.left > 0 && tooltip.right < windowWidth) {
@@ -129,53 +171,11 @@ export const Tooltip = ({
                                 top: trigger.y - tooltip.height - 3,
                                 left: trigger.x + (trigger.left - container.left + trigger.width / 2),
                             });
+                            setTranslate('-50%');
                             return;
                         }
                     }
                 };
-
-                // switch (newPosition) {
-
-                //     case 'top':
-                //         if (tooltip.right >= windowWidth) {
-                //             const resize = windowWidthWithoutScrollbar - tooltip.right - 10;
-                //             setCssPosition({
-                //                 top: trigger.bottom - container.top + 3,
-                //                 left: trigger.left - container.left + trigger.width / 2 + resize,
-                //             });
-                //             break;
-                //         }
-                //         if (tooltip.left <= 0) {
-                //             setCssPosition({
-                //                 top: trigger.bottom - container.top + 3,
-                //                 left:
-                //                     trigger.left -
-                //                     container.left +
-                //                     trigger.width / 2 +
-                //                     tooltipRef.current.offsetWidth / 2,
-                //             });
-                //             break;
-                //         }
-                //         setCssPosition({
-                //             bottom: container.bottom - trigger.top + 3,
-                //             left: trigger.left - container.left + trigger.width / 2,
-                //         });
-                //         break;
-                //     case 'right':
-                //         setCssPosition({
-                //             top: trigger.top - container.top + trigger.height / 2 - tooltipRef.current.offsetHeight / 2,
-                //             left: trigger.right - container.left + tooltipRef.current.offsetWidth / 2 + 3,
-                //         });
-                //         break;
-                //     case 'left':
-                //         setCssPosition({
-                //             top: trigger.top - container.top + trigger.height / 2 - tooltipRef.current.offsetHeight / 2,
-                //             right: trigger.right - container.left - tooltipRef.current.offsetWidth / 2 + 3,
-                //         });
-                //         break;
-                //     default:
-                //         break;
-                // }
 
                 setNewPosition(newPosition);
 
@@ -192,7 +192,7 @@ export const Tooltip = ({
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [tooltipPosition, trigger, tooltipContainerRef?.current, tooltipRef?.current, triggerRef?.current]);
+    }, [tooltipPosition, trigger, tooltipContainerRef?.current, tooltipRef?.current, triggerRef?.current, position]);
 
     return (
         <div className={`${Styles.Tooltip} ${classNames.container}`} ref={tooltipContainerRef}>
@@ -217,9 +217,10 @@ export const Tooltip = ({
                             bottom: cssPosition?.bottom && `${cssPosition.bottom}px`,
                             left: cssPosition?.left && `${cssPosition.left}px`,
                             right: cssPosition?.right && `${cssPosition.right}px`,
+                            transform: `translateX(${translate})`,
                         }}
                     >
-                        {title}
+                        {custom ? custom : title}
                     </div>,
                     document.body,
                 )}
