@@ -54,9 +54,146 @@
             border-radius: 50%;
             top: 2px;
             left: 2px;
-            background-color: #fff;
+            background-color: var(--vui-color-white);
             box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
+    }
+}
+
+.checkboxWrapper {
+    .inputCheckbox {
+        display: none;
+        visibility: hidden;
+
+        &:checked + .labelCheckbox .customCheckbox {
+            background: var(--vui-color-primary);
+            border-color: var(--vui-color-primary);
+
+            svg {
+                stroke-dashoffset: 0;
+            }
+        }
+    }
+
+    .labelCheckbox {
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: center;
+        vertical-align: bottom;
+        margin: auto;
+        user-select: none;
+        -webkit-user-select: none;
+        cursor: pointer;
+
+        span {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .customCheckbox {
+            position: relative;
+            border-radius: 3px;
+            transform: scale(1);
+            vertical-align: middle;
+            border: 1px solid var(--vui-color-disabled);
+            transition: all 0.2s ease;
+
+            svg {
+                fill: none;
+                stroke: var(--vui-color-white);
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-dasharray: 16px;
+                stroke-dashoffset: 16px;
+                transition: all 0.3s ease;
+                transition-delay: 0.1s;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        &:hover {
+            .customCheckbox {
+                border-color: var(--vui-color-primary);
+            }
+        }
+    }
+}
+.smallInputCheckbox {
+    .labelCheckbox {
+        .customCheckbox {
+            width: 14px;
+            height: 14px;
+        }
+
+        .checkboxChildren {
+            font-size: var(--font-size-sm);
+            padding-left: var(--vui-spacing-xs);
+        }
+    }
+}
+.middleInputCheckbox {
+    .labelCheckbox {
+        .customCheckbox {
+            width: 16px;
+            height: 16px;
+        }
+
+        .checkboxChildren {
+            font-size: var(--font-size-md);
+            padding-left: var(--vui-spacing-sm);
+        }
+    }
+}
+.largeInputCheckbox {
+    .labelCheckbox {
+        .customCheckbox {
+            width: 18px;
+            height: 18px;
+        }
+        .checkboxChildren {
+            font-size: var(--font-size-lg);
+            padding-left: var(--vui-spacing-sm);
+        }
+    }
+}
+.checkboxWave {
+    .inputCheckbox {
+        &:checked + .labelCheckbox .customCheckbox {
+            animation: checkboxPulse 0.4s ease;
+
+            &::before {
+                transform: scale(3.5);
+                opacity: 0;
+                transition: all 0.6s ease;
+            }
+        }
+    }
+
+    .labelCheckbox {
+        .customCheckbox {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                background: var(--vui-color-primary);
+                display: block;
+                transform: scale(0);
+                opacity: 1;
+                border-radius: var(--vui-circle-radius);
+            }
+        }
+    }
+}
+@keyframes checkboxPulse {
+    50% {
+        transform: scale(0.9);
     }
 }

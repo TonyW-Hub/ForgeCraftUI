@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { PropsWithChildren, forwardRef, useState } from 'react';
 import Styles from './Input.module.scss';
 import { Alert } from '../Alert/Alert';
 import { Flex } from '../Flex/Flex';
+import { Size } from '../../../types';
 
 type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
     className?: string;
@@ -186,3 +187,64 @@ const InputSwitch = ({
 };
 
 Input.Switch = InputSwitch;
+
+type InputCheckboxProps = {
+    name: string;
+    classNames?: { wrapper?: string; input?: string; label?: string; children?: string; checkbox?: string };
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    ref?: React.LegacyRef<HTMLInputElement>;
+    size?: Size;
+    animation?: 'wave' | 'none';
+};
+
+const InputCheckbox = forwardRef<HTMLInputElement, PropsWithChildren<InputCheckboxProps>>(
+    (
+        {
+            classNames = { wrapper: '', label: '', checkbox: '', children: '', input: '' },
+            name,
+            size = 'small',
+            onChange = () => {},
+            animation = 'none',
+            children,
+        }: PropsWithChildren<InputCheckboxProps>,
+        ref,
+    ) => {
+        const setClassNamesProps = () => {
+            const sizing = {
+                small: Styles.smallInputCheckbox,
+                middle: Styles.middleInputCheckbox,
+                large: Styles.largeInputCheckbox,
+            };
+
+            const inputAnimation = {
+                none: '',
+                wave: Styles.checkboxWave,
+            };
+
+            return [Styles.checkboxWrapper, sizing[size], inputAnimation[animation], classNames.wrapper].join(' ');
+        };
+
+        return (
+            <div className={setClassNamesProps()}>
+                <input
+                    ref={ref}
+                    type="checkbox"
+                    id={name}
+                    name={name}
+                    className={`${Styles.inputCheckbox} ${classNames.input}`}
+                    onChange={onChange}
+                />
+                <label htmlFor={name} className={`${Styles.labelCheckbox} ${classNames.label}`}>
+                    <span className={`${Styles.customCheckbox} ${classNames.checkbox}`}>
+                        <svg viewBox="0 0 12 10" height="10px" width="12px">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg>
+                    </span>
+                    <span className={`${Styles.checkboxChildren} ${classNames.children}`}>{children}</span>
+                </label>
+            </div>
+        );
+    },
+);
+
+Input.Checkbox = InputCheckbox;

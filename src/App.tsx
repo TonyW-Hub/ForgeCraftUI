@@ -199,6 +199,10 @@ function App() {
 
             <Input.Switch name="switch" onChange={(e) => console.log(e.target.checked)} />
 
+            <Input.Checkbox name="checkbox" onChange={(e) => console.log('checkbox', e.target.checked)}>
+                Checkbox
+            </Input.Checkbox>
+
             <Modal
                 visible={modalOpen}
                 onCancel={() => setModalOpen(false)}
