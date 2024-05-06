@@ -1,4 +1,9 @@
-.Button {
+.ButtonLink {
+    width: fit-content;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     font-size: var(--vui-font-size-sm);
     line-height: 1.25rem;
     border-radius: var(--vui-radius-sm);
@@ -8,18 +13,18 @@
     transition: all 0.2s ease-in;
     cursor: pointer;
     gap: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: var(--vui-box-shadow-sm);
     border: 1px solid transparent;
     position: relative;
 
     span {
         display: inline-flex;
-        justify-content: center;
         align-items: center;
         gap: var(--vui-spacing-xs);
+    }
+
+    &:hover {
+        text-decoration: underline;
     }
 }
 
@@ -39,28 +44,46 @@
 }
 .buttonPrimary {
     background-color: var(--vui-color-primary);
+    &:hover {
+        text-decoration: none;
+    }
 }
 .buttonSecondary {
     background-color: var(--vui-color-secondary);
+    &:hover {
+        text-decoration: none;
+    }
 }
 .buttonTertiary {
     background-color: var(--vui-color-tertiary);
     color: var(--vui-color-default-dark);
+    &:hover {
+        text-decoration: none;
+    }
 }
 .buttonQuaternary {
     background-color: var(--vui-color-quaternary);
     color: var(--vui-color-default-dark);
+    &:hover {
+        text-decoration: none;
+    }
 }
 .buttonDashed {
     background-color: transparent;
     color: var(--vui-color-default-dark);
     border-color: var(--vui-color-default-dark);
     border-style: dashed;
+    &:hover {
+        text-decoration: none;
+    }
 }
 .buttonOutline {
     background-color: transparent;
     color: var(--vui-color-default-dark);
     border-color: var(--vui-color-disabled);
+    &:hover {
+        text-decoration: none;
+    }
 }
 .buttonLink {
     background-color: transparent;
@@ -100,25 +123,10 @@
     border-radius: var(--vui-radius-2xl);
 }
 
-.loading {
-    opacity: 0.65;
-    cursor: default;
-    pointer-events: none;
-
-    &:hover {
-        pointer-events: none;
-    }
-}
 .notAllowed {
     background-color: var(--vui-color-disabled-opacity);
     color: var(--vui-color-disabled);
     pointer-events: none;
     cursor: not-allowed;
     border: 1px solid var(--vui-color-disabled);
-}
-
-.ButtonLink {
-    width: fit-content;
-    text-decoration: none;
-    display: inline-flex;
 }

@@ -16,24 +16,24 @@
     --vui-color-white: #ffffff;
     --vui-color-black: #000000;
 
-    --vui-color-primary: #21bbee;
-    --vui-color-primary-1: #e9f8fd;
-    --vui-color-primary-2: #8edcf6;
-    --vui-color-primary-3: #58ccf2;
-    --vui-color-primary-4: #11b0e4;
-    --vui-color-primary-5: #109dcc;
-    --vui-color-primary-6: #0e8bb5;
+    --vui-color-primary: #00a2ae;
+    --vui-color-primary-1: #e5f5f6;
+    --vui-color-primary-2: #99d9de;
+    --vui-color-primary-3: #4cbdc6;
+    --vui-color-primary-4: #00818b;
+    --vui-color-primary-5: #006168;
+    --vui-color-primary-6: #004045;
     --vui-color-secondary: #17243f;
-    --vui-color-secondary-1: #2b4477;
-    --vui-color-secondary-2: #253964;
-    --vui-color-secondary-3: #1e2f52;
+    --vui-color-secondary-1: #e7e9eb;
+    --vui-color-secondary-2: #a2a7b2;
+    --vui-color-secondary-3: #5c6578;
     --vui-color-secondary-4: #10192c;
     --vui-color-secondary-5: #090f1a;
     --vui-color-secondary-6: #030407;
     --vui-color-tertiary: #08ffad;
-    --vui-color-tertiary-1: #b9ffe8;
-    --vui-color-tertiary-2: #7effd4;
-    --vui-color-tertiary-3: #56ffc7;
+    --vui-color-tertiary-1: #e6fff6;
+    --vui-color-tertiary-2: #9cffde;
+    --vui-color-tertiary-3: #52ffc5;
     --vui-color-tertiary-4: #00ee9f;
     --vui-color-tertiary-5: #00d48e;
     --vui-color-tertiary-6: #00bb7d;
@@ -58,28 +58,23 @@
     --vui-color-success-4: #27ac5f;
     --vui-color-success-5: #208c4e;
     --vui-color-success-6: #186c3c;
-
+    --vui-color-default-light: #ffffff;
+    --vui-color-default-dark: #000000;
     --vui-color-disabled: #d9d9d9;
-    --color-disabled: rgba(0, 0, 0, 0.25);
+    --vui-color-disabled-opacity: rgba(0, 0, 0, 0.04);
+    --vui-color-gradient: linear-gradient(to right, #dbffaa, #00a2ae, #08ffad);
+    --vui-color-default-dark-opacity: rgba(0, 0, 0, 0.5);
 
-    --border-color-disabled: #d9d9d9;
+    --vui-box-shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.02);
+    --vui-box-shadow-md: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
+    --vui-box-shadow-lg: 0 4px 12px #0000001a;
 
-    --bg-dark-opacity: rgba(0, 0, 0, 0.8);
-    --bg-soft-dark-opacity: rgba(0, 0, 0, 0.4);
-    --bg-color-disabled: rgba(0, 0, 0, 0.04);
-
-    --default-box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
-    --box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
-    --vui-toast-box-shadow: 0 4px 12px #0000001a;
-
-    --default-global-radius: 6px;
+    --vui-radius-sm: 6px;
     --vui-radius-md: 8px;
-    --vui-circle-radius: 50%;
-    --vui-round-radius: 40px;
-
-    --z-index-backdrop: 1000;
-    --z-index-modal: 1050;
-    --vui-z-index-tooltip: 1060;
+    --vui-radius-lg: 10px;
+    --vui-radius-xl: 15px;
+    --vui-radius-2xl: 20px;
+    --vui-radius-circle: 50%;
 
     --vui-spacing-xs: 4px;
     --vui-spacing-sm: 8px;
@@ -87,22 +82,27 @@
     --vui-spacing-lg: 24px;
     --vui-spacing-xl: 32px;
 
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-md: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.5rem;
-    --font-size-heading-1: 1.875rem;
-    --font-size-heading-2: 1.5rem;
-    --font-size-heading-3: 1.125rem;
-    --font-size-heading-4: 1rem;
-    --font-size-heading-5: 0.875rem;
+    --vui-font-size-xs: 0.75rem;
+    --vui-font-size-sm: 0.875rem;
+    --vui-font-size-md: 1rem;
+    --vui-font-size-lg: 1.125rem;
+    --vui-font-size-xl: 1.5rem;
+    --vui-font-size-heading-1: 1.875rem;
+    --vui-font-size-heading-2: 1.5rem;
+    --vui-font-size-heading-3: 1.125rem;
+    --vui-font-size-heading-4: 1rem;
+    --vui-font-size-heading-5: 0.875rem;
 
-    --breakpoint-sm: 640px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 1024px;
-    --breakpoint-xl: 1280px;
-    --breakpoint-2xl: 1536px;
+    --vui-breakpoint-sm: 640px;
+    --vui-breakpoint-md: 768px;
+    --vui-breakpoint-lg: 1024px;
+    --vui-breakpoint-xl: 1280px;
+    --vui-breakpoint-2xl: 1536px;
+
+    --vui-z-index-backdrop: 555;
+    --vui-z-index-modal: 560;
+    --vui-z-index-menu: 550;
+    --vui-z-index-sidebar: 530;
 }
 
 body {

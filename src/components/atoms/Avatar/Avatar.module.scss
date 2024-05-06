@@ -1,0 +1,9 @@
+.Avatar {
+    border-radius: var(--vui-radius-circle);
+    border: 2px solid var(--vui-color-primary);
+    aspect-ratio: 1/1;
+    width: 35px;
+    height: 35px;
+    box-sizing: initial;
+    object-fit: contain;
+}

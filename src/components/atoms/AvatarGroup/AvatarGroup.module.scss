@@ -1,0 +1,16 @@
+.AvatarGroup {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin-left: 8px;
+
+    .wrapper {
+        margin-left: -8px;
+        overflow: hidden;
+        background-color: var(--vui-color-default-light);
+        border-radius: var(--vui-radius-circle);
+        width: min-content;
+    }
+}

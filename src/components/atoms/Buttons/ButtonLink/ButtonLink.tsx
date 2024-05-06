@@ -1,42 +1,35 @@
 import React, { PropsWithChildren } from 'react';
-import Styles from './Button.module.scss';
-import { ButtonClassNamesProps, ButtonShape, ButtonVariant, Size } from '../../../types';
-import { Loader } from '../Loader/Loader';
-import { ButtonLink } from '../Buttons/ButtonLink/ButtonLink';
-// import { ButtonLink } from '../Buttons/ButtonLink/ButtonLink';
+import Styles from './ButtonLink.module.scss';
+import { ButtonClassNamesProps, ButtonShape, ButtonVariant, Size } from '../../../../types';
 
-interface ButtonProps
-    extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+interface ButtonLinkProps {
     className?: string;
     classNames?: ButtonClassNamesProps;
-    disabled?: boolean;
-    loading?: boolean;
     variant?: ButtonVariant;
     size?: Size;
     danger?: boolean;
     shape?: ButtonShape;
     icon?: React.ReactNode;
     endIcon?: boolean;
+    link: string;
+    target?: '_blank';
     style?: React.CSSProperties;
 }
 
-export const Button = (props: PropsWithChildren<ButtonProps>) => {
-    const {
-        className = '',
-        classNames = { button: '', loader: '', body: '' },
-        disabled = false,
-        loading = false,
-        variant = 'default',
-        size = 'middle',
-        danger = false,
-        shape = 'default',
-        icon,
-        endIcon = false,
-        style,
-        children,
-        ...rest
-    } = props;
-
+export const ButtonLink = ({
+    className = '',
+    classNames = { button: '', loader: '', body: '' },
+    variant = 'link',
+    size = 'middle',
+    danger = false,
+    shape = 'default',
+    link = '#',
+    target,
+    icon,
+    endIcon = false,
+    style,
+    children,
+}: PropsWithChildren<ButtonLinkProps>) => {
     const setProps = () => {
         const sizeProps = {
             large: Styles.buttonLarge,
@@ -67,8 +60,6 @@ export const Button = (props: PropsWithChildren<ButtonProps>) => {
             Styles.ButtonLink,
             className,
             classNames.button,
-            disabled ? Styles.notAllowed : '',
-            loading ? Styles.loading : '',
             typeof size === 'string' ? sizeProps[size] : '',
             variantProps[variant],
             shapeProps[shape],
@@ -84,19 +75,10 @@ export const Button = (props: PropsWithChildren<ButtonProps>) => {
     };
 
     return (
-        <button {...rest} className={setProps()} disabled={loading ? loading : disabled} style={styles}>
-            {loading && (
-                <Loader
-                    className={classNames.loader}
-                    variant={variant === 'outline' || variant === 'dashed' ? 'dark' : 'light'}
-                    size={18}
-                />
-            )}
+        <a className={setProps()} href={link} target={target} style={styles}>
             {icon && !endIcon && icon}
             {children && <span className={classNames.body}>{children}</span>}
             {endIcon && icon && icon}
-        </button>
+        </a>
     );
 };
-
-Button.Link = ButtonLink;

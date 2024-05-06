@@ -1,0 +1,53 @@
+.Backdrop {
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: var(--vui-z-index-backdrop);
+    min-height: 100vh;
+
+    &::-webkit-scrollbar-track {
+        border-radius: 20px;
+        background-color: #0000;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background-color: #0000;
+    }
+}
+
+.backdropActive {
+    background-color: var(--vui-color-disabled-opacity);
+}
+
+.decreaseAnimation {
+    animation: descrease 0.2s both;
+
+    @keyframes descrease {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+}
+
+.fadeBackdrop {
+    animation: fade 0.2s both;
+
+    @keyframes fade {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+}

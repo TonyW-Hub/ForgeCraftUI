@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren, useEffect, useState } from 'react';
+import React, { CSSProperties, PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 import Styles from './Flex.module.scss';
 import { FlexJustify } from '../../../types';
 
@@ -12,6 +12,7 @@ type FlexProps = React.DetailedHTMLProps<React.HtmlHTMLAttributes<HTMLDivElement
     className?: string;
     responsive?: ResponsiveFlex[];
     style?: CSSProperties;
+    autoFlex?: number;
     onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
@@ -26,95 +27,103 @@ type ResponsiveFlex = {
     };
 };
 
-export const Flex = (props: PropsWithChildren<FlexProps>) => {
-    const {
-        vertical = false,
-        reverse = false,
-        wrap = 'nowrap',
-        justify = 'flex-start',
-        align = 'flex-start',
-        className = '',
-        responsive = [],
-        gap,
-        style,
-        onClick,
-        children,
-    } = props;
+export const Flex = forwardRef<HTMLDivElement, PropsWithChildren<FlexProps>>(
+    (props: PropsWithChildren<FlexProps>, ref) => {
+        const {
+            vertical = false,
+            reverse = false,
+            wrap = 'nowrap',
+            justify = 'flex-start',
+            align = 'flex-start',
+            className = '',
+            responsive = [],
+            gap,
+            style,
+            autoFlex,
+            onClick,
+            children,
+        } = props;
 
-    const [propsState, setPropsState] = useState<FlexProps>({
-        vertical,
-        wrap,
-        justify,
-        align,
-        gap,
-    });
+        const [propsState, setPropsState] = useState<FlexProps>({
+            vertical,
+            wrap,
+            justify,
+            align,
+            gap,
+        });
 
-    const setGap = () => {
-        switch (propsState.gap) {
-            case 'small':
-                return 8;
-            case 'medium':
-                return 16;
-            case 'large':
-                return 24;
-            default:
-                return propsState.gap;
-        }
-    };
-
-    useEffect(() => {
-        if (!responsive?.length) return;
-
-        const handleResize = () => {
-            const newBreakpoint = window.innerWidth;
-
-            const checkBreakpoint = responsive
-                .sort((a, b) => a.breakpoint - b.breakpoint)
-                .find((resp) => newBreakpoint <= resp.breakpoint);
-
-            setPropsState((prev) => {
-                if (checkBreakpoint) {
-                    return {
-                        ...prev,
-                        vertical: checkBreakpoint?.settings?.vertical ? checkBreakpoint.settings.vertical : false,
-                        wrap: checkBreakpoint?.settings?.wrap ? checkBreakpoint.settings.wrap : 'nowrap',
-                        justify: checkBreakpoint?.settings?.justify ? checkBreakpoint.settings.justify : 'flex-start',
-                        align: checkBreakpoint?.settings?.align ? checkBreakpoint.settings.align : 'flex-start',
-                        gap: checkBreakpoint?.settings?.gap ? checkBreakpoint.settings.gap : gap,
-                    };
-                } else {
-                    return { ...prev, vertical, wrap, justify, align, gap };
-                }
-            });
+        const setGap = () => {
+            switch (propsState.gap) {
+                case 'small':
+                    return 8;
+                case 'medium':
+                    return 16;
+                case 'large':
+                    return 24;
+                default:
+                    return propsState.gap;
+            }
         };
 
-        handleResize();
+        useEffect(() => {
+            if (!responsive?.length) return;
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [responsive, align, gap, justify, vertical, wrap]);
+            const handleResize = () => {
+                const newBreakpoint = window.innerWidth;
 
-    return (
-        <div
-            className={`${Styles.Flex} ${className}`}
-            onClick={(e) => onClick && onClick(e)}
-            style={{
-                flexDirection:
-                    propsState.vertical && reverse
-                        ? 'column-reverse'
-                        : propsState.vertical && !reverse
-                        ? 'column'
-                        : reverse && !propsState.vertical
-                        ? 'row-reverse'
-                        : 'row',
-                justifyContent: propsState.justify,
-                alignItems: propsState.align,
-                flexWrap: propsState.wrap,
-                gap: setGap(),
-                ...style,
-            }}
-        >
-            {children}
-        </div>
-    );
-};
+                const checkBreakpoint = responsive
+                    .sort((a, b) => a.breakpoint - b.breakpoint)
+                    .find((resp) => newBreakpoint <= resp.breakpoint);
+
+                setPropsState((prev) => {
+                    if (checkBreakpoint) {
+                        return {
+                            ...prev,
+                            vertical: checkBreakpoint?.settings?.vertical ? checkBreakpoint.settings.vertical : false,
+                            wrap: checkBreakpoint?.settings?.wrap ? checkBreakpoint.settings.wrap : 'nowrap',
+                            justify: checkBreakpoint?.settings?.justify
+                                ? checkBreakpoint.settings.justify
+                                : 'flex-start',
+                            align: checkBreakpoint?.settings?.align ? checkBreakpoint.settings.align : 'flex-start',
+                            gap: checkBreakpoint?.settings?.gap ? checkBreakpoint.settings.gap : gap,
+                        };
+                    } else {
+                        return { ...prev, vertical, wrap, justify, align, gap };
+                    }
+                });
+            };
+
+            handleResize();
+
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }, [responsive, align, gap, justify, vertical, wrap]);
+
+        return (
+            <div
+                ref={ref}
+                className={`${Styles.Flex} ${className}`}
+                onClick={(e) => onClick && onClick(e)}
+                style={{
+                    flexDirection:
+                        propsState.vertical && reverse
+                            ? 'column-reverse'
+                            : propsState.vertical && !reverse
+                              ? 'column'
+                              : reverse && !propsState.vertical
+                                ? 'row-reverse'
+                                : 'row',
+                    justifyContent: propsState.justify,
+                    alignItems: propsState.align,
+                    flexWrap: propsState.wrap,
+                    gap: setGap(),
+                    ...style,
+                }}
+            >
+                {autoFlex
+                    ? React.Children.map(children, (child) => <div style={{ flex: `1 1 ${autoFlex}px` }}>{child}</div>)
+                    : children}
+            </div>
+        );
+    },
+);

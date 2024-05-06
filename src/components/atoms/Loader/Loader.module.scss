@@ -11,7 +11,7 @@
         position: absolute;
         inset: 0px;
         border-radius: 50%;
-        border: 3px solid var(--default-light-color);
+        border: 3px solid var(--vui-color-default-light);
         animation: prixClipFix 3s linear infinite;
     }
 
@@ -42,6 +42,6 @@
 
 .dark {
     &::before {
-        border: 3px solid var(--default-dark-color);
+        border: 3px solid var(--vui-color-default-dark);
     }
 }

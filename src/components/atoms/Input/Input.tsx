@@ -192,7 +192,6 @@ type InputCheckboxProps = {
     name: string;
     classNames?: { wrapper?: string; input?: string; label?: string; children?: string; checkbox?: string };
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    ref?: React.LegacyRef<HTMLInputElement>;
     size?: Size;
     animation?: 'wave' | 'none';
 };

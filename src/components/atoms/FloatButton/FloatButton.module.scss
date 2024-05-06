@@ -1,0 +1,105 @@
+.FloatButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--vui-spacing-xs);
+    width: 40px;
+    min-height: 40px;
+    border: none;
+    font-size: var(--font-size-sm);
+    z-index: var(--vui-z-index-float-button);
+    box-shadow: var(--vui-toast-box-shadow);
+    transition: background-color 0.2s ease-out;
+
+    svg {
+        stroke: var(--vui-color-black);
+        width: 18px;
+        height: 18px;
+    }
+}
+.FloatButtonCircle {
+    border-radius: var(--vui-circle-radius);
+}
+.FloatButtonSquare {
+    border-radius: var(--vui-radius-md);
+}
+.link {
+    a {
+        text-decoration: none;
+        color: var(--vui-color-black);
+    }
+}
+.FloatButtonDefault {
+    background-color: var(--vui-color-white);
+    &:hover {
+        background-color: var(--vui-color-light-1);
+    }
+}
+.FloatButtonPrimary {
+    background-color: var(--vui-color-primary);
+    svg {
+        stroke: var(--vui-color-white);
+    }
+
+    &:hover {
+        background-color: var(--vui-color-primary-3);
+    }
+}
+.FloatButtonSecondary {
+    background-color: var(--vui-color-secondary);
+    svg {
+        stroke: var(--vui-color-white);
+    }
+
+    &:hover {
+        background-color: var(--vui-color-secondary-2);
+    }
+}
+.FloatButtonTertiary {
+    background-color: var(--vui-color-tertiary);
+
+    &:hover {
+        background-color: var(--vui-color-tertiary-2);
+    }
+}
+.FloatButtonQuaternary {
+    background-color: var(--vui-color-quaternary);
+
+    &:hover {
+        background-color: var(--vui-color-quaternary-2);
+    }
+}
+
+.FloatButtonPortal {
+    position: fixed;
+    bottom: 48px;
+    right: 24px;
+}
+
+.FloatButtonGroup {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    position: fixed;
+    bottom: 48px;
+    right: 24px;
+    gap: var(--vui-spacing-md);
+
+    .menu {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: var(--vui-spacing-md);
+        transform: translateY(15%);
+        opacity: 0;
+        transition: transform 0.2s ease-out, opacity 0.2s ease-in-out;
+        pointer-events: none;
+    }
+
+    .menuActive {
+        transform: translateY(0%);
+        opacity: 1;
+        pointer-events: initial;
+    }
+}
