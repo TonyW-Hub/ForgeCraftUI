@@ -1,19 +1,44 @@
 .Input {
-    border: 1px solid #fbfbfbfb;
-    background-color: #fbfbfbfb;
-    border-radius: 5px;
-    padding: 0.25rem 0.3rem;
-    box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
-    width: auto;
+    position: relative;
+    line-height: 30px;
+    flex: 1;
 
-    &:focus {
-        accent-color: #fbfbfbfb;
-        border-color: #171717;
+    .input {
+        width: 100%;
+        min-width: 100px;
+        border-radius: var(--vui-radius-2xl);
+        border: none;
+        height: 45px;
+        line-height: 30px;
+        padding-left: 3rem;
+        border: 2px solid transparent;
+        outline: none;
+        background-color: var(--vui-color-default-light);
+        color: var(--vui-color-default-dark);
+        transition: 0.3s ease;
+        flex: 1;
+
+        &::placeholder {
+            color: var(--vui-color-default-dark);
+        }
+
+        &:hover,
+        &:focus {
+            border-radius: var(--vui-radius-sm);
+            box-shadow: var(--vui-box-shadow-md);
+        }
     }
 
-    &:hover {
-        border-color: #171717;
+    .icon {
+        position: absolute;
+        fill: none;
+        width: var(--vui-spacing-md);
+        height: var(--vui-spacing-md);
+        left: var(--vui-spacing-md);
+    }
+
+    .bordered {
+        border: 1px solid var(--vui-color-primary);
     }
 }
 
@@ -21,6 +46,8 @@
     position: relative;
     display: inline-block;
     width: 40px;
+    min-width: 40px;
+    min-height: 24px;
     height: 24px;
     margin: 10px;
 
@@ -42,7 +69,7 @@
         width: 40px;
         height: 20px;
         background-color: var(--vui-color-disabled);
-        border-radius: var(--vui-round-radius);
+        border-radius: var(--vui-radius-lg);
         cursor: pointer;
         transition: background-color 0.3s;
 
@@ -51,13 +78,29 @@
             position: absolute;
             width: 16px;
             height: 16px;
-            border-radius: var(--vui-circle-radius);
+            border-radius: var(--vui-radius-circle);
             top: 2px;
             left: 3px;
-            background-color: var(--vui-color-white);
+            background-color: var(--vui-color-default-light);
             box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
+    }
+}
+
+.switchSecondary {
+    .switchCheckbox:checked + .switchLabel {
+        background-color: var(--vui-color-secondary);
+    }
+}
+.switchTertiary {
+    .switchCheckbox:checked + .switchLabel {
+        background-color: var(--vui-color-tertiary);
+    }
+}
+.switchQuaternary {
+    .switchCheckbox:checked + .switchLabel {
+        background-color: var(--vui-color-quaternary);
     }
 }
 
@@ -104,7 +147,7 @@
 
             svg {
                 fill: none;
-                stroke: var(--vui-color-white);
+                stroke: var(--vui-color-default-light);
                 stroke-width: 2;
                 stroke-linecap: round;
                 stroke-linejoin: round;
@@ -131,7 +174,7 @@
         }
 
         .checkboxChildren {
-            font-size: var(--font-size-sm);
+            font-size: var(--vui-font-size-sm);
             padding-left: var(--vui-spacing-xs);
         }
     }
@@ -144,7 +187,7 @@
         }
 
         .checkboxChildren {
-            font-size: var(--font-size-md);
+            font-size: var(--vui-font-size-md);
             padding-left: var(--vui-spacing-sm);
         }
     }
@@ -156,7 +199,7 @@
             height: 18px;
         }
         .checkboxChildren {
-            font-size: var(--font-size-lg);
+            font-size: var(--vui-font-size-lg);
             padding-left: var(--vui-spacing-sm);
         }
     }

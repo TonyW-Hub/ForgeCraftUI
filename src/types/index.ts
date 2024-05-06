@@ -13,13 +13,15 @@ export type ButtonVariant = BasicColorVarian | 'default' | 'dashed' | 'outline' 
 
 export type TooltipVariant = BasicColorVarian | 'default' | 'outline';
 
-export type Size = 'small' | 'middle' | 'large' | number;
+export type Size = BasicSizeType | number;
+
+export type BasicSizeType = 'small' | 'middle' | 'large';
 
 export type ButtonShape = 'default' | 'circle' | 'round';
 
 export type ImageAttributes = { src: string; alt: string };
 
-export type Shape = 'default' | 'circle' | 'small' | 'middle' | 'large';
+export type Shape = 'default' | 'circle' | BasicSizeType;
 
 export type CSSPosition = {
     top?: number;

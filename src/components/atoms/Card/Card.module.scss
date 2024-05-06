@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    background-color: var(--default-light-color);
+    background-color: var(--vui-color-default-light);
     width: 100%;
     text-align: start;
     border-radius: var(--vui-radius-md);
@@ -17,6 +17,7 @@
                 aspect-ratio: 1/1;
                 width: 35px;
                 height: 35px;
+                box-sizing: initial;
             }
 
             .details {
@@ -35,7 +36,7 @@
         .description {
             margin: 0;
             margin-top: var(--vui-spacing-xs);
-            font-size: var(--font-size-xs);
+            font-size: var(--vui-font-size-xs);
         }
     }
 
@@ -44,7 +45,7 @@
     }
 
     .body {
-        font-size: var(--font-size-sm);
+        font-size: var(--vui-font-size-sm);
     }
 }
 
@@ -58,7 +59,7 @@
         padding-top: var(--vui-spacing-sm);
 
         .avatar {
-            padding-inline-end: var(--vui-spacing-sm);
+            margin-inline-end: var(--vui-spacing-sm);
         }
     }
 
@@ -77,7 +78,7 @@
         padding-top: var(--vui-spacing-md);
 
         .avatar {
-            padding-inline-end: var(--vui-spacing-md);
+            margin-inline-end: var(--vui-spacing-md);
         }
     }
 
@@ -96,7 +97,7 @@
         padding-top: var(--vui-spacing-lg);
 
         .avatar {
-            padding-inline-end: var(--vui-spacing-lg);
+            margin-inline-end: var(--vui-spacing-lg);
         }
     }
 
@@ -110,80 +111,6 @@
     }
 }
 
-.CardCollapse {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    background-color: var(--default-light-color);
-    width: auto;
-    text-align: start;
-    border-radius: var(--vui-radius-md);
-    height: max-content;
-
-    .header {
-        cursor: pointer;
-        padding: 0;
-
-        &Wrapper {
-            width: 100%;
-            display: flex;
-
-            .avatar {
-                aspect-ratio: 1/1;
-                width: 35px;
-                height: 35px;
-            }
-
-            .details {
-                flex: 1;
-                overflow: hidden;
-            }
-
-            .title {
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                font-weight: bold;
-            }
-        }
-
-        .description {
-            margin: 0;
-            margin-top: var(--vui-spacing-xs);
-            font-size: var(--font-size-xs);
-        }
-    }
-
-    .wrapper {
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.25s ease-in-out;
-        .inner {
-            overflow: hidden;
-            transition: all 0.2s ease;
-        }
-    }
-
-    .isVisible {
-        grid-template-rows: 1fr;
-
-        .inner {
-            margin-top: var(--vui-spacing-sm);
-        }
-    }
-
-    .footer {
-        margin-top: var(--vui-spacing-md);
-    }
-}
-
-.smallCardCollapse {
-    padding: var(--vui-spacing-sm);
-}
-.middleCardCollapse {
-    padding: var(--vui-spacing-md);
-}
-.largeCardCollapse {
-    padding: var(--vui-spacing-lg);
+.cover {
+    width: 100%;
 }

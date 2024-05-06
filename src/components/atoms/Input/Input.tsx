@@ -2,7 +2,7 @@ import React, { PropsWithChildren, forwardRef, useState } from 'react';
 import Styles from './Input.module.scss';
 import { Alert } from '../Alert/Alert';
 import { Flex } from '../Flex/Flex';
-import { Size } from '../../../types';
+import { BasicColorVarian, BasicSizeType } from '../../../types';
 
 type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
     className?: string;
@@ -164,21 +164,37 @@ Input.DropZone = InputDropZone;
 type InputSwitchProps = {
     name: string;
     classNames?: { main?: string; input?: string; label?: string };
+    checked?: boolean;
+    variant?: BasicColorVarian;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputSwitch = ({
     name,
     classNames = { main: '', input: '', label: '' },
+    checked,
+    variant = 'primary',
     onChange = () => {},
 }: InputSwitchProps) => {
+    const setVariants = () => {
+        const variants = {
+            primary: '',
+            secondary: Styles.switchSecondary,
+            tertiary: Styles.switchTertiary,
+            quaternary: Styles.switchQuaternary,
+        };
+
+        return variants[variant];
+    };
+
     return (
-        <div className={`${Styles.InputSwitch} ${classNames.main}`}>
+        <div className={`${Styles.InputSwitch} ${setVariants()} ${classNames.main}`}>
             <input
                 type="checkbox"
                 name={name}
                 id={name}
                 className={`${Styles.switchCheckbox} ${classNames.input}`}
+                checked={checked}
                 onChange={onChange}
             />
             <label htmlFor={name} className={`${Styles.switchLabel} ${classNames.label}`}></label>
@@ -192,7 +208,7 @@ type InputCheckboxProps = {
     name: string;
     classNames?: { wrapper?: string; input?: string; label?: string; children?: string; checkbox?: string };
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    size?: Size;
+    size?: BasicSizeType;
     animation?: 'wave' | 'none';
 };
 

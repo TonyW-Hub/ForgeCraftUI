@@ -1,0 +1,25 @@
+.Image {
+    aspect-ratio: 1/1;
+    width: 35px;
+    height: 35px;
+    box-sizing: initial;
+    object-fit: contain;
+}
+
+.bordered {
+    border: 1px solid var(--vui-color-primary);
+    border-radius: var(--vui-radius-md);
+}
+
+.circle {
+    border-radius: var(--vui-radius-circle);
+}
+.smallShape {
+    border-radius: var(--vui-radius-sm);
+}
+.mediumShape {
+    border-radius: var(--vui-radius-md);
+}
+.largeShape {
+    border-radius: var(--vui-radius-lg);
+}

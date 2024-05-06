@@ -1,0 +1,140 @@
+.CardCollapse {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: var(--vui-color-default-light);
+    width: auto;
+    text-align: start;
+    border-radius: var(--vui-radius-md);
+    height: max-content;
+
+    .header {
+        cursor: pointer;
+        padding: 0;
+
+        &Wrapper {
+            width: 100%;
+            display: flex;
+
+            .avatar {
+                aspect-ratio: 1/1;
+                width: 35px;
+                height: 35px;
+            }
+
+            .details {
+                flex: 1;
+                overflow: hidden;
+            }
+
+            .title {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: bold;
+            }
+        }
+
+        .description {
+            margin: 0;
+            margin-top: var(--vui-spacing-xs);
+            font-size: var(--vui-font-size-xs);
+        }
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.25s ease-in-out;
+        .inner {
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+    }
+
+    .isVisible {
+        grid-template-rows: 1fr;
+
+        .inner {
+            margin-top: var(--vui-spacing-sm);
+        }
+    }
+
+    .footer {
+        margin-top: var(--vui-spacing-md);
+    }
+
+    .menu {
+        position: absolute;
+        top: 0;
+        left: -3px;
+        animation-name: animatetop;
+        animation-duration: 0.3s;
+        background-color: var(--vui-color-default-light);
+        box-shadow: var(--vui-box-shadow-lg);
+        width: 100%;
+        min-width: 100px;
+        padding: var(--vui-spacing-xs);
+        z-index: 999;
+        border-radius: var(--vui-radius-sm);
+
+        &Item {
+            border-radius: var(--vui-radius-sm);
+            padding: 2px var(--vui-spacing-xs);
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--vui-color-primary-1);
+            }
+        }
+        &ItemDisabled {
+            border-radius: var(--vui-radius-sm);
+            padding: 2px var(--vui-spacing-xs);
+            background-color: var(--vui-color-disabled-opacity);
+            pointer-events: none;
+            color: var(--vui-color-disabled);
+            cursor: initial;
+        }
+    }
+
+    @keyframes animatetop {
+        from {
+            transform: translateY(-10px) scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+.bordered {
+    border: 1px solid var(--vui-color-light-1);
+}
+
+.smallCardCollapse {
+    padding: var(--vui-spacing-sm);
+    .header {
+        .avatar {
+            margin-inline-end: var(--vui-spacing-sm);
+        }
+    }
+}
+.middleCardCollapse {
+    padding: var(--vui-spacing-md);
+    .header {
+        .avatar {
+            margin-inline-end: var(--vui-spacing-md);
+        }
+    }
+}
+.largeCardCollapse {
+    padding: var(--vui-spacing-lg);
+    .header {
+        .avatar {
+            margin-inline-end: var(--vui-spacing-lg);
+        }
+    }
+}
