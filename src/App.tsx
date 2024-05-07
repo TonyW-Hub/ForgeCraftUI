@@ -13,7 +13,7 @@ import { Separator } from './components/atoms/Separator/Separator';
 import { FloatButton } from './components/atoms/FloatButton/FloatButton';
 
 function App() {
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [modalOpen, setModalOpen] = useState<boolean>(true);
     const [loading, setLoading] = useState<boolean>(false);
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
 

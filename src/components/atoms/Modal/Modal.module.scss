@@ -1,12 +1,12 @@
-@use '../../../shared/styles/mixin' as *;
+@use '../../../shared/styles/index.scss' as *;
 
 .backdrop {
     position: fixed;
     inset: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    z-index: var(--z-index-backdrop);
-    min-height: 100vh;
+    z-index: var(--vui-z-index-backdrop);
+    min-height: 100dvh;
 
     &::-webkit-scrollbar-track {
         border-radius: 20px;
@@ -23,32 +23,32 @@
 }
 
 .backdropActive {
-    background-color: var(--bg-soft-dark-opacity);
+    background-color: var(--vui-color-default-dark-opacity);
 }
 
 .Modal {
     position: relative;
-    background-color: var(--default-light-color);
-    border-radius: var(--default-global-radius);
-    box-shadow: var(--default-box-shadow);
+    background-color: var(--vui-color-default-light);
+    border-radius: var(--vui-radius-md);
+    box-shadow: var(--vui-box-shadow-sm);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px;
-    top: 80px;
+    top: 50px;
     margin-bottom: 8rem;
-    z-index: var(--z-index-modal);
+    z-index: var(--vui-z-index-modal);
     margin-inline: auto;
     cursor: initial;
     width: calc(100% - 2rem);
     min-width: 200px;
     max-width: 600px;
+    overflow: hidden;
     @include expandAnimation();
 
     .cancelBtnCross {
         background-color: transparent;
         border: none;
-        border-radius: var(--default-global-radius);
+        border-radius: var(--vui-radius-md);
         cursor: pointer;
         display: flex;
         justify-content: center;
@@ -67,22 +67,28 @@
     }
 
     &Header {
-        width: 100%;
+        padding-inline: 10px;
+        padding-top: 10px;
     }
 
     &Body {
-        width: 100%;
-        font-size: var(--font-size-md);
+        font-size: var(--vui-font-size-md);
+        padding-inline: 10px;
 
         p {
             margin: 0;
         }
     }
 
+    &Footer {
+        padding-inline: 10px;
+        padding-bottom: 10px;
+    }
+
     @include responsive(sm) {
         top: 10px;
         &Body {
-            font-size: var(--font-size-sm);
+            font-size: var(--vui-font-size-sm);
         }
     }
 }

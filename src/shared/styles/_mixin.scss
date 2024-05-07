@@ -1,5 +1,3 @@
-@use './variables' as *;
-
 @mixin container($size: 300px, $query: max-width) {
     @media ($query: $size) {
         @content;
@@ -7,24 +5,28 @@
 }
 
 @mixin responsive($device, $query: max-width) {
-    @if $device == sm {
-        @media screen and ($query: $breakpoint-sm) {
+    @if $device == xs {
+        @media screen and ($query: 330px) {
+            @content;
+        }
+    } @else if $device == sm {
+        @media screen and ($query: 640px) {
             @content;
         }
     } @else if $device == md {
-        @media screen and ($query: $breakpoint-md) {
+        @media screen and ($query: 768px) {
             @content;
         }
     } @else if $device == lg {
-        @media screen and ($query: $breakpoint-lg) {
+        @media screen and ($query: 1024px) {
             @content;
         }
     } @else if $device == xl {
-        @media screen and ($query: $breakpoint-xl) {
+        @media screen and ($query: 1280px) {
             @content;
         }
-    } @else if $device == xxl {
-        @media screen and ($query: $breakpoint-2xl) {
+    } @else if $device == 2xl {
+        @media screen and ($query: 1536px) {
             @content;
         }
     }

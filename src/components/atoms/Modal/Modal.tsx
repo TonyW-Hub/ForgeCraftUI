@@ -2,10 +2,10 @@ import React, { PropsWithChildren, useState } from 'react';
 import Styles from './Modal.module.scss';
 import { createPortal } from 'react-dom';
 import { Typography } from '../Typography/Typography';
-import { CloseSVG } from '../SVGs/CloseSVG/CloseSVG';
 import { Flex } from '../Flex/Flex';
 import { FlexJustify } from '../../../types';
 import { Button } from '../Button/Button';
+import { XSVG } from '../SVGs/XSVG/XSVG';
 
 type ModalClassNames = {
     backdrop?: string;
@@ -21,7 +21,8 @@ type ModalTexts = {
     ContinueText?: string;
 };
 
-type ModalProps = {
+interface ModalProps {
+    className?: string;
     visible: boolean;
     onCancel?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
     onContinue?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
@@ -37,7 +38,7 @@ type ModalProps = {
     closeVisible?: boolean;
     classNames?: ModalClassNames;
     texts?: ModalTexts;
-};
+}
 
 export const Modal = ({
     visible,
@@ -53,6 +54,7 @@ export const Modal = ({
     footerPosition = 'flex-end',
     close,
     closeVisible = true,
+    className = '',
     classNames = { modal: '', backdrop: '', body: '', footer: '', header: '', close: '' },
     texts = { cancelText: 'Cancel', ContinueText: 'Continue' },
     children,
@@ -92,13 +94,14 @@ export const Modal = ({
             <Flex
                 vertical
                 role="dialog"
-                className={`${Styles.Modal} ${classNames.modal} ${decreaseAnimation ? Styles.decreaseAnimation : ''}`}
-                gap={'medium'}
+                className={`${Styles.Modal} ${className} ${classNames.modal} ${decreaseAnimation ? Styles.decreaseAnimation : ''}`}
+                gap="medium"
+                align="stretch"
                 onClick={(e) => e.stopPropagation()}
             >
                 {closeVisible && (
                     <button className={`${Styles.cancelBtnCross} ${classNames.close}`} onClick={handleCloseAnimation}>
-                        {close ? close : <CloseSVG />}
+                        {close ? close : <XSVG />}
                     </button>
                 )}
                 {header && header}
@@ -115,8 +118,7 @@ export const Modal = ({
                     <Flex
                         justify={footerPosition}
                         gap={'small'}
-                        style={{ width: '100%' }}
-                        className={classNames.footer}
+                        className={`${Styles.ModalFooter} ${classNames.footer}`}
                     >
                         <Button onClick={handleCloseAnimation} size="small" variant="outline">
                             {textsProps?.cancelText}
