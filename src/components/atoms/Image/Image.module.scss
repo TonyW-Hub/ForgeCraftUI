@@ -7,8 +7,10 @@
 }
 
 .bordered {
-    border: 1px solid var(--vui-color-primary);
+    border-color: var(--vui-color-primary);
     border-radius: var(--vui-radius-md);
+    border-width: 1px;
+    border-style: solid;
 }
 
 .circle {

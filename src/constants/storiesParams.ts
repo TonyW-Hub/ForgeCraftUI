@@ -4,6 +4,11 @@ export const STORIES_PARAMS = {
             options: ['primary', 'secondary', 'tertiary', 'quaternary', 'default', 'dashed', 'outline', 'link', 'text'],
         },
     },
+    shape: {
+        image: {
+            options: ['circle', 'default', 'small', 'middle', 'large'],
+        },
+    },
     flex: {
         direction: {
             justify: {

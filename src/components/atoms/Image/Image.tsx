@@ -26,10 +26,8 @@ export const Image = ({
     shape = 'default',
     style,
 }: PropsWithChildren<ImageProps>) => {
-    const isBorderedBoolean = typeof bordered === 'boolean';
-
     const setClassNamesProps = () => {
-        const isBordered = isBorderedBoolean && bordered ? Styles.bordered : '';
+        const isBordered = bordered ? Styles.bordered : '';
         let isShape = '';
         if (typeof shape !== 'number') {
             const currentShape = {
@@ -56,14 +54,14 @@ export const Image = ({
                 height: typeof size === 'number' ? size : size?.height,
                 minWidth: typeof size === 'number' ? size : style?.minWidth,
                 minHeight: typeof size === 'number' ? size : style?.minHeight,
-                borderWidth: typeof bordered === 'object' && bordered?.size ? bordered?.size : style?.borderWidth,
+                borderWidth: typeof bordered === 'object' && bordered?.size ? bordered?.size : '',
                 borderRadius:
                     typeof shape === 'number'
                         ? shape
                         : typeof bordered === 'object' && bordered?.radius
                           ? bordered?.radius
-                          : style?.borderRadius,
-                borderColor: typeof bordered === 'object' && bordered?.color ? bordered?.color : style?.borderColor,
+                          : '',
+                borderColor: typeof bordered === 'object' && bordered?.color ? bordered?.color : '',
                 objectFit: cover ? 'cover' : style?.objectFit,
                 borderStyle:
                     typeof bordered === 'object' ? (bordered?.style ? bordered?.style : 'solid') : style?.borderStyle,

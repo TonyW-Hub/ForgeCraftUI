@@ -11,6 +11,11 @@ const meta: Meta<typeof CardCollapse> = {
     tags: ['autodocs'],
     parameters: {
         layout: 'centered',
+        docs: {
+            description: {
+                component: `This is the documentation for the Card Collapse. It can be imported as <b style="color:#00a2ae">CardCollapse</b> or <b style="color:#00a2ae">Card.Collapse</b> (via the Card component).`,
+            },
+        },
     },
     argTypes: {
         avatar: {
