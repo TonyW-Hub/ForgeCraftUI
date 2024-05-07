@@ -12,5 +12,11 @@
         background-color: var(--vui-color-default-light);
         border-radius: var(--vui-radius-circle);
         width: min-content;
+
+        transition: translate 0.2s;
+
+        &:hover ~ .wrapper {
+            translate: 1rem;
+        }
     }
 }

@@ -35,7 +35,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, PropsWithChildren<AvatarGr
                             className={Styles.wrapper}
                             style={{ zIndex: 100 - index + 1 }}
                         >
-                            <Avatar src={item.src} alt={item.alt} size={item.size} />
+                            <Avatar src={item.src} alt={item.alt} size={item.size} bordered={item?.bordered} />
                         </div>
                     ))}
             </div>
