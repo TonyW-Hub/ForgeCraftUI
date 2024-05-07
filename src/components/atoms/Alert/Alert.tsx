@@ -1,93 +1,77 @@
-import { PropsWithChildren } from "react";
-import Styles from "./Alert.module.scss";
+import React, { PropsWithChildren } from 'react';
+import Styles from './Alert.module.scss';
+import { XSVG } from '../SVGs/XSVG/XSVG';
+import { AlertType, AlertVariant } from '../../../types';
+import { AlertCircleSVG } from '../SVGs/AlertsSVGs/AlertCircleSVG/AlertCircleSVG';
+import { AlertTriangleSVG } from '../SVGs/AlertsSVGs/AlertTriangleSVG/AlertTriangleSVG';
+import { CircleCheckSVG } from '../SVGs/CheksSVGs/CircleCheckSVG/CircleCheckSVG';
+import { InfoSVG } from '../SVGs/InfoSVG/InfoSVG';
 
 type AlertProps = {
-  type: "error" | "warning" | "success";
-  variant?: "background" | "text";
+    type: AlertType;
+    variant?: AlertVariant;
+    className?: string;
+    style?: React.CSSProperties;
+    visible?: boolean;
+    onRemove?: () => void;
 };
 
 export const Alert = ({
-  type,
-  variant = "background",
-  children,
+    type,
+    variant = 'background',
+    className = '',
+    style,
+    visible = true,
+    onRemove,
+    children,
 }: PropsWithChildren<AlertProps>) => {
-  const setIcon = () => {
-    switch (type) {
-      case "error":
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-alert-circle"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-        );
-      case "warning":
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-alert-triangle"
-          >
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-            <line x1="12" y1="9" x2="12" y2="13"></line>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-        );
-      case "success":
-        break;
+    const setIcon = () => {
+        if (!type) return null;
 
-      default:
-        return null;
-    }
-  };
+        const icons = {
+            error: <AlertCircleSVG />,
+            warning: <AlertTriangleSVG />,
+            success: <CircleCheckSVG />,
+            info: <InfoSVG />,
+        };
 
-  const setVariantPerType = () => {
-    switch (type) {
-      case "error":
-        switch (variant) {
-          case "background":
-            return Styles.errorBg;
+        return icons[type];
+    };
 
-          default:
-            return "";
-        }
+    const setVariantPerType = () => {
+        if (!type) return '';
 
-      case "warning":
-        switch (variant) {
-          case "background":
-            return Styles.warningBg;
+        const backgrounds = {
+            error: Styles.errorBg,
+            warning: Styles.warningBg,
+            success: Styles.successBg,
+            info: Styles.infoBg,
+        };
+        const texts = {
+            error: Styles.error,
+            warning: Styles.warning,
+            success: Styles.success,
+            info: Styles.info,
+        };
 
-          default:
-            return "";
-        }
+        const variants = {
+            background: backgrounds[type],
+            text: texts[type],
+        };
 
-      default:
-        return "";
-    }
-  };
+        return variants[variant];
+    };
 
-  return (
-    <div className={`${Styles.Alert} ${Styles[type]} ${setVariantPerType()}`}>
-      {setIcon()}
-      <p>{children}</p>
-    </div>
-  );
+    if (!visible) return null;
+
+    return (
+        <div
+            className={`${Styles.Alert} ${setVariantPerType()} ${className}`}
+            style={{ paddingRight: onRemove ? 20 : style?.paddingRight, ...style }}
+        >
+            {setIcon()}
+            <p>{children}</p>
+            {onRemove && <XSVG className={Styles.xIcon} size={15} onClick={onRemove} />}
+        </div>
+    );
 };

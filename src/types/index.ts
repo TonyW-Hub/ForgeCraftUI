@@ -79,3 +79,7 @@ export type ButtonClassNamesProps = {
     loader?: string;
     body?: string;
 };
+
+export type AlertType = 'error' | 'warning' | 'success' | 'info';
+
+export type AlertVariant = 'background' | 'text';

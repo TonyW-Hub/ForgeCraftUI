@@ -1,44 +1,94 @@
 .Alert {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    position: relative;
 
-  svg {
-    min-width: clamp(20px, 20px, 20px);
-  }
+    svg {
+        min-width: clamp(20px, 20px, 20px);
+    }
 
-  p {
-    font-size: 0.95rem;
-    margin: 0;
-  }
+    p {
+        font-size: 0.95rem;
+        text-align: start;
+        margin: 0;
+    }
+
+    .xIcon {
+        align-self: flex-end;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        right: var(--vui-spacing-xs);
+        transform: translateY(-50%);
+    }
 }
 
 .error {
-  color: #ff0000;
-  svg {
-    stroke: #ff0000;
-  }
+    color: var(--vui-color-danger);
+    svg {
+        stroke: var(--vui-color-danger);
+    }
 }
-
 .errorBg {
-  width: auto;
-  background-color: lighten($color: #ff0000, $amount: 45%);
-  padding: 5px 10px;
-  border-radius: 3px;
+    width: auto;
+    background-color: var(--vui-color-danger-1);
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--vui-color-danger);
+    svg {
+        stroke: var(--vui-color-danger);
+    }
 }
 
 .warning {
-  color: #ed6c02;
-  svg {
-    stroke: #ed6c02;
-  }
+    color: var(--vui-color-warning);
+    svg {
+        stroke: var(--vui-color-warning);
+    }
+}
+.warningBg {
+    width: auto;
+    background-color: var(--vui-color-warning-1);
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--vui-color-warning);
+    svg {
+        stroke: var(--vui-color-warning);
+    }
 }
 
-.warningBg {
-  width: 100%;
-  background-color: lighten($color: #ed6c02, $amount: 45%);
-  padding: 5px 10px;
-  border-radius: 3px;
+.success {
+    color: var(--vui-color-success);
+    svg {
+        stroke: var(--vui-color-success);
+    }
+}
+.successBg {
+    width: auto;
+    background-color: var(--vui-color-success-1);
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--vui-color-success);
+    svg {
+        stroke: var(--vui-color-success);
+    }
+}
+
+.info {
+    color: var(--vui-color-primary);
+    svg {
+        stroke: var(--vui-color-primary);
+    }
+}
+.infoBg {
+    width: auto;
+    background-color: var(--vui-color-primary-1);
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--vui-color-primary);
+    svg {
+        stroke: var(--vui-color-primary);
+    }
 }

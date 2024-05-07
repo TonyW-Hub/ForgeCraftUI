@@ -58,6 +58,13 @@
     --vui-color-success-4: #27ac5f;
     --vui-color-success-5: #208c4e;
     --vui-color-success-6: #186c3c;
+    --vui-color-warning: #ed6c02;
+    --vui-color-warning-1: #fdf0e5;
+    --vui-color-warning-2: #f9d2b3;
+    --vui-color-warning-3: #f4a667;
+    --vui-color-warning-4: #d56101;
+    --vui-color-warning-5: #a54b01;
+    --vui-color-warning-6: #763601;
     --vui-color-default-light: #ffffff;
     --vui-color-default-dark: #000000;
     --vui-color-disabled: #d9d9d9;
